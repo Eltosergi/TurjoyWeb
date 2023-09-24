@@ -13,8 +13,13 @@ return new class extends Migration
     {
         Schema::create('vouchers', function (Blueprint $table) {
             $table->integer('bookingCode');
+            $table->timestamp('bookingDate');
+            $table->timestamp('buyDate');
+            $table->integer('bookingSeats');
+            $table->integer('totalPrice');
             $table->string('tripOrigin');
             $table->string('tripDestination');
+
 
             $table->primary('bookingCode');
             $table->foreign(['tripOrigin', 'tripDestination'])->references(['origin','destination'])->on('trips');

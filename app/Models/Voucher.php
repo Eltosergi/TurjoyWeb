@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Voucher extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'bookingDate',
+        'buyDate',
+        'bookingSeats',
+        'totalPrice',
+        'tripOrigin',
+        'tripDestination'
+    ];
 }
