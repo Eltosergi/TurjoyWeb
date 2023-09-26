@@ -12,17 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('vouchers', function (Blueprint $table) {
-            $table->integer('bookingCode');
+            $table->id();
+            $table->integer('bookingCode')->unique();
             $table->timestamp('bookingDate');
             $table->timestamp('buyDate');
             $table->integer('bookingSeats');
             $table->integer('totalPrice');
-            $table->string('tripOrigin');
-            $table->string('tripDestination');
 
+;
 
-            $table->primary('bookingCode');
-            $table->foreign(['tripOrigin', 'tripDestination'])->references(['origin','destination'])->on('trips');
+            $table->foreignid('triplId')->references('id')->on('trips');
+            $table->foreignId('userId')->references('id')->on('users');
         });
     }
 
