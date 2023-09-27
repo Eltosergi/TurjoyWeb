@@ -14,6 +14,6 @@ class Trip extends Model
         'destination',
         'qtySeats',
         'price',
-        'userEmail'
+
     ];
 }

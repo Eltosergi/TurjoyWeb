@@ -10,11 +10,14 @@ class Voucher extends Model
     use HasFactory;
 
     protected $fillable = [
+        'bookingCode',
         'bookingDate',
         'buyDate',
         'bookingSeats',
         'totalPrice',
-        'tripOrigin',
-        'tripDestination'
+        'userId',
+        'tripId'
+
+
     ];
 }
