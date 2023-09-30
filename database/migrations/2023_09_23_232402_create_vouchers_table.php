@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('totalPrice');
 
             $table->foreignid('triplId')->references('id')->on('trips');
-            $table->foreignId('userId')->references('id')->on('users');
+
         });
     }
 

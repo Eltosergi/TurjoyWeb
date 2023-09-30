@@ -15,7 +15,6 @@ class Voucher extends Model
         'buyDate',
         'bookingSeats',
         'totalPrice',
-        'userId',
         'tripId'
 
 
