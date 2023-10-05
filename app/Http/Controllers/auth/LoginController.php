@@ -20,7 +20,7 @@ class LoginController extends Controller
         $messages = makeMessages();
 
         $this->validate($request, [
-            'email'=> ['required', 'email'],
+            'email'=> ['required'],
             'password' => ['required']
         ], $messages);
 
