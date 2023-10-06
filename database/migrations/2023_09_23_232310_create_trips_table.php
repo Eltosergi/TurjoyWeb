@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('destination');
             $table->integer('qtySeats');
             $table->integer('price');
+            $table->timestamps();
 
 
         });

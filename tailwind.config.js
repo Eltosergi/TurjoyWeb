@@ -8,7 +8,20 @@ export default {
 
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        'green-custom': '#2ECC71',
+        'blue-custom': {
+          '50':'#0A74DA',
+          '100':'#2A49FF'
+        },
+        'gray-custom':{ 
+          '50' :'#333333', 
+          '100':'#EAEAEA',
+          '150':'#F4F4F4' },
+        'red-custom': '#ff8a80 ',
+      },
+    },
   },
   plugins: [
     require('flowbite/plugin')
