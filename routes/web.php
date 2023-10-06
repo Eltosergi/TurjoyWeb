@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('index',function (){
+    return view('Index.index');
+})->name('index');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/add/travel', [TripController::class, 'indexAddTravels'])->name('travels.index');
+    Route::post('/addtravel', [TripController::class, 'travelCheck'])->name('travel.check');
+    Route::get('/result/travels', [TripController::class, 'indexTravels'])->name('travelsAdd.index');
+});
