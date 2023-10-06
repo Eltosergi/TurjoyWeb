@@ -23,10 +23,7 @@ return new class extends Migration
 
         });
 
-        User::create([
-            'email'=> 'italo.donoso@ucn.cl',
-            'password' =>'Turjoy91'
-        ]);
+
     }
 
     /**

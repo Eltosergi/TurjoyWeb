@@ -18,9 +18,8 @@ return new class extends Migration
             $table->timestamp('buyDate');
             $table->integer('bookingSeats');
             $table->integer('totalPrice');
-
             $table->foreignid('triplId')->references('id')->on('trips');
-
+            $table->timestamps();
         });
 
     }
