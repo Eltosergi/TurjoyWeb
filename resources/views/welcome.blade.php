@@ -8,7 +8,7 @@ Home Page
         <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
           @auth
               <!-Dentro de esta etiqueta solo lo ve el usuario autenticado->
-            <div class="bg-gray-custom-50  w-1/4 h-100 p-5">
+            <div class="bg-gray-custom text-white w-1/4 h-100 p-5">
             <li>
             <a href="{{route('welcome')}}" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Inicio</a>
             </li>
@@ -23,7 +23,7 @@ Home Page
           @endauth
           @guest
             <!-Dentro de esta etiqueta solo lo ve el usuario invitado->
-            <div class="bg-color: #F4F4F4 text-white h-3/4 w-1/4 p-6">
+            <div class="bg-color: #EAEAEA text-white h-3/4 w-1/4 p-6">
             <li>
             <a href="{{route('welcome')}}" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Inicio</a>
               </li>
