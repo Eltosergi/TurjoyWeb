@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\LogoutController;
+use App\Http\Controllers\TripController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,14 @@ Route::post('login',[LoginController::class, 'store'])->name('login.store');
 Route::get('test',function (){
     return view('test');
 })->name('test');
+
+Route::get('index',function (){
+    return view('Index.index');
+})->name('index');
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/add/travel', [TripController::class, 'indexAddTravels'])->name('travels.index');
+    Route::post('/addtravel', [TripController::class, 'travelCheck'])->name('travel.check');
+    Route::get('/result/travels', [TripController::class, 'indexTravels'])->name('travelsAdd.index');
+});

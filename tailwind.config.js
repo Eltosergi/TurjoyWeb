@@ -15,7 +15,10 @@ export default {
           '50':'#0A74DA',
           '100':'#2A49FF'
         },
-        'gray-custom': '#333333',
+        'gray-custom':{ 
+          '50' :'#333333', 
+          '100':'#EAEAEA',
+          '150':'#F4F4F4' },
         'red-custom': '#ff8a80 ',
       },
     },

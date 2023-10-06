@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Trip;
 use Illuminate\Http\Request;
-use App\Imports\TravelsImport;
+use App\Imports\TripImport;
 use Maatwebsite\Excel\Facades\Excel;
+use app\Helpers\MyHelper;
 
-class TravelController extends Controller
+class TripController extends Controller
 {
     public function indexAddTravels()
     {
@@ -22,7 +23,7 @@ class TravelController extends Controller
             session(['duplicatedRows' => []]);
         }
 
-        return view('admin.travel.index', [
+        return view('Index.index', [
             'validRows' => session('validRows'),
             'invalidRows' => session('invalidRows'),
             'duplicatedRows' => session('duplicatedRows')
@@ -31,12 +32,13 @@ class TravelController extends Controller
 
     public function indexTravels()
     {
-        return view('admin.travel.index', [
+        return view('Index.index', [
             'validRows' => session('validRows'),
             'invalidRows' => session('invalidRows'),
             'duplicatedRows' => session('duplicatedRows')
         ]);
     }
+
     public function travelCheck(Request $request)
     {
 
@@ -50,7 +52,7 @@ class TravelController extends Controller
         if ($request->hasFile('document')) {
             $file = request()->file('document');
 
-            $import = new TravelsImport();
+            $import = new TripImport();
             Excel::import($import, $file);
 
             // Obtener filas válidas e inválidas
@@ -66,23 +68,23 @@ class TravelController extends Controller
                 $destination = $row['destino'];
 
                 // Verifica si la fila ya existe en la base de datos
-                $travel = Travel::where('origin', $origin)
+                $travel = Trip::where('origin', $origin)
                     ->where('destination', $destination)
                     ->first();
 
                 if ($travel) {
                     // Si existe, realiza una actualización
                     $travel->update([
-                        'seat_quantity' => $row['cantidad_de_asientos'],
-                        'base_rate' => $row['tarifa_base'],
+                        'qtySeats' => $row['cantidad_de_asientos'],
+                        'price' => $row['tarifa_base'],
                     ]);
                 } else {
                     // Si no existe, inserta un nuevo viaje a la base de datos
-                    Travel::create([
+                    Trip::create([
                         'origin' => $origin,
                         'destination' => $destination,
-                        'seat_quantity' => $row['cantidad_de_asientos'],
-                        'base_rate' => $row['tarifa_base'],
+                        'qtySeats' => $row['cantidad_de_asientos'],
+                        'price' => $row['tarifa_base'],
                     ]);
                 }
             }

@@ -2,12 +2,12 @@
 
 namespace App\Imports;
 
-use App\Models\Travel;
+use App\Models\Trip;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class TravelsImport implements ToCollection, WithHeadingRow
+class TripImport implements ToCollection, WithHeadingRow
 {
     protected $validRows = [];
     protected $invalidRows = [];
@@ -84,7 +84,7 @@ class TravelsImport implements ToCollection, WithHeadingRow
      * @return array
      */
     public function getDuplicatedRows()
-    {
+    {   
         return $this->duplicatedRows;
     }
 }
