@@ -3,6 +3,12 @@
 Iniciar Sesión
 @endsection
 @section('content')
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
     <div class="flex justify-center items-center">
         <div

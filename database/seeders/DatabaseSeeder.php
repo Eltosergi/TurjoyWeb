@@ -20,12 +20,7 @@ class DatabaseSeeder extends Seederexample
         //     'email' => 'test@example.com',
         // ]);
 
-        $data = [
-            'email'=> 'italo.donoso@ucn.cl',
-            'password' =>'Turjoy91'
-        ];
-
-        DB::table('users')->insert($data);
+        
 
     }
 }
