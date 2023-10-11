@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\User;
+
 return new class extends Migration
 {
     /**
@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('vouchers', function (Blueprint $table) {
+        Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-            $table->string('uri');
-            $table->timestamp('date');
-            $table->foreignId('ticket_id')->constrained('tickets');
+            $table->string('code')->unique();
+            $table->integer('sate');
+            $table->integer('total');
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('trips_id')->constrained('trips');
+            $table->timestamps();
         });
-
     }
 
     /**
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('vouchers');
+        Schema::dropIfExists('tickets');
     }
 };
