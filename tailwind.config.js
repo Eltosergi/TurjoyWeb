@@ -20,6 +20,7 @@ export default {
           '100':'#EAEAEA',
           '150':'#F4F4F4' },
         'red-custom': '#ff8a80 ',
+        'brown-custom': '#E4E6A8',
       },
     },
   },

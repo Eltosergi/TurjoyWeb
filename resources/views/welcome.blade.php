@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
 @section('title')
-Home Page
+Página principal
 @endsection
 
 @section('content')
+
 
 <div id="default-carousel" class="relative w-full h-96" data-carousel="slide">
     <!-- Carousel wrapper -->
@@ -62,4 +63,5 @@ Home Page
 
 
 @endsection
+
 
