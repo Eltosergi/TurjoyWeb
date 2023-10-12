@@ -3,10 +3,17 @@
 Iniciar Sesión
 @endsection
 @section('content')
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
     <div class="flex justify-center items-center ">
         <div
-                class="w-full max-w-md h-[750px] p-8 bg-white border border-gray-custom-100 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">    
+         
+            class="w-full max-w-md h-[750px] p-8 bg-white border border-gray-custom-100 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">    
              <a href="{{route('welcome')}}" class="block py-2 pl-3 pr-4 text-gray-custom-50 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><span style="font-size: 24px;">&larr;</span></a>
                 <form class="space-y-4" method="POST" action="{{ route('login.store') }}" novalidate>
                 @csrf
@@ -37,10 +44,13 @@ Iniciar Sesión
                     @if (session('message'))
                         <p class="bg-red-custom text-white my-2 rounded-lg text-lg text-center -p-2" >{{ session('message') }}</p>
                     @endif
-                </form>
-        </div>   
+
+            </form>
+
+
     </div>
-    <footer class="bg-blue-custom-50 text-white h-[95px]">
-            </footer>
-    
+        </div>
+    </div>
+
+
   @endsection
