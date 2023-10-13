@@ -16,23 +16,41 @@
                 <a class="px-6 py-3 bg-green-500 hover:bg-green-700 transition-all text-white font-semibold rounded-lg"
                     href="{{ route('welcome') }}">Volver al menu de administrador</a> 
             </div>
-        
-            <div class="relative inline-block">
-                <div class="group cursor-pointer p-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10" />
-                        <line x1="12" y1="16" x2="12" y2="12" />
-                        <line X1="12" y1="8" x2="12" y2="8" />
-                    </svg>
+
+            <h2>
+                <style>
+                    .info-box {
+                        position: fixed;
+                        top: 0;
+                        right: 0;
+                        padding: 10px;
+                        background-color: #a8e6cf;
+                        color: #333;
+                        border-bottom-left-radius: 5px;
+                    }
+
+                   .info-box p {
+                        margin: 0;
+                        padding: 5px 10px;
+                    }
+
+                   .error-box {
+                        background-color: #ff8a80;
+                    }
+
+                   .warning-box {
+                        background-color: #e4e6a8;
+                    }
+                </style>
+            </h2>
+            <body>
+               <div class="info-box">
+                    <p>se cargaron correctamente</p>
+                    <p class="error-box">No se pudieron cargar</p>
+                    <p class="warning-box">Repetidos</p>
                 </div>
-                <div class="hidden group-hover:block absolute z-10 p-2 mt-2 border rounded shadow-lg">
-                    <p class="bg-a8e6cf text-white p-2 rounded mb-1">se cargaron correctamente</p>
-                    <p class="bg-ff8a80 text-white p-2 rounded mb-1">No se pudieron cargar</p>
-                    <p class="bg-e4e6a8 text-black p-2 rounded">Repetidos</p>
-                </div>
-            </div>
-            
-            <script src="{{ mix('js/app.js') }}"></script>
+            </body>
+
 
             @if (count($validRows) > 0)
                 <h3 class="text-2xl text-gray-custom-50 font-semibold uppercase text-center">Listado de viajes
