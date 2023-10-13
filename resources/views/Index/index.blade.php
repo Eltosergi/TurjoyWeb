@@ -14,7 +14,50 @@
         <div class="flex flex-1 flex-col gap-2">
             <div class="my-8 mx-auto">
                 <a class="px-6 py-3 bg-green-500 hover:bg-green-700 transition-all text-white font-semibold rounded-lg"
-                    href="{{ route('welcome') }}">Volver al menu de administrador</a>
+                    href="{{ route('welcome') }}">Volver al menu de administrador</a> 
+            
+
+                <h1>
+                    <style>
+                        .info-box {
+                            display: fixed;
+                            justify-content: center;
+                            align-items: center;
+                            height: 10vh;
+                            margin: 1vh;
+                            background-color: #f0f0f0;
+                        }
+
+                        .info-message {
+                            color: #333;
+                            padding: 20px;
+                            text-align: center;
+                            border-radius: 5px;
+                        }
+
+                        .correctly-box{
+                            background-color: #a8e6cf;
+                        }
+
+                       .error-box {
+                            background-color: #ff8a80;
+                        }
+
+                       .warning-box {
+                            background-color: #e4e6a8;
+                        }
+                    </style>
+                </h1>
+
+                <body>
+                   <div class="info-message">
+                        <h2>Simbología de colores y errores</h2>
+                   <div class="info-box">
+                        <p class="correctly-box">se cargaron correctamente</p>
+                        <p class="error-box">No se pudieron cargar correctamente</p>
+                        <p class="warning-box">Rutas repetidas</p>
+                    </div>
+                </body>
             </div>
 
             @if (count($validRows) > 0)
