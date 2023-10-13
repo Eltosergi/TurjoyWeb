@@ -137,6 +137,20 @@ table + .structure-heading {
  text-align: center;
 }
 
+.absolute {
+    display: none;
+}
+
+.group:hover .absolute {
+    display: block;
+    /* Personaliza el cuadro de texto flotante */
+    background-color: #333;
+    color: #fff;
+    padding: 8px;
+    border-radius: 4px;
+    width: 200px;
+}
+
 .covered-by-small-tests {
  background-color: {{success-high}};
 }
@@ -156,3 +170,5 @@ table + .structure-heading {
 .not-coverable {
  background-color: {{warning}};
 }
+
+

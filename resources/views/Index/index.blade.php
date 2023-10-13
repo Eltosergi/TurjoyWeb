@@ -14,8 +14,25 @@
         <div class="flex flex-1 flex-col gap-2">
             <div class="my-8 mx-auto">
                 <a class="px-6 py-3 bg-green-500 hover:bg-green-700 transition-all text-white font-semibold rounded-lg"
-                    href="{{ route('welcome') }}">Volver al menu de administrador</a>
+                    href="{{ route('welcome') }}">Volver al menu de administrador</a> 
             </div>
+        
+            <div class="relative inline-block">
+                <div class="group cursor-pointer p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" y1="16" x2="12" y2="12" />
+                        <line X1="12" y1="8" x2="12" y2="8" />
+                    </svg>
+                </div>
+                <div class="hidden group-hover:block absolute z-10 p-2 mt-2 border rounded shadow-lg">
+                    <p class="bg-a8e6cf text-white p-2 rounded mb-1">se cargaron correctamente</p>
+                    <p class="bg-ff8a80 text-white p-2 rounded mb-1">No se pudieron cargar</p>
+                    <p class="bg-e4e6a8 text-black p-2 rounded">Repetidos</p>
+                </div>
+            </div>
+            
+            <script src="{{ mix('js/app.js') }}"></script>
 
             @if (count($validRows) > 0)
                 <h3 class="text-2xl text-gray-custom-50 font-semibold uppercase text-center">Listado de viajes
