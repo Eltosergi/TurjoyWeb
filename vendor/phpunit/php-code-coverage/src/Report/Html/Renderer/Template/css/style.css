@@ -39,26 +39,6 @@ body {
  border: 0 !important;
 }
 
-.table tbody tr.covered-by-large-tests, li.covered-by-large-tests, tr.success, td.success, li.success, span.success {
- background-color: {{success-low}};
-}
-
-.table tbody tr.covered-by-medium-tests, li.covered-by-medium-tests {
- background-color: {{success-medium}};
-}
-
-.table tbody tr.covered-by-small-tests, li.covered-by-small-tests {
- background-color: {{success-high}};
-}
-
-.table tbody tr.warning, .table tbody td.warning, li.warning, span.warning {
- background-color: {{warning}};
-}
-
-.table tbody tr.danger, .table tbody td.danger, li.danger, span.danger {
- background-color: {{danger}};
-}
-
 .table tbody td.info {
  background-color: #d9edf7;
 }
@@ -137,22 +117,17 @@ table + .structure-heading {
  text-align: center;
 }
 
-.covered-by-small-tests {
- background-color: {{success-high}};
+.absolute {
+    display: none;
 }
 
-.covered-by-medium-tests {
- background-color: {{success-medium}};
+.group:hover .absolute {
+    display: block;
+    /* Personaliza el cuadro de texto flotante */
+    background-color: #333;
+    color: #fff;
+    padding: 8px;
+    border-radius: 4px;
+    width: 200px;
 }
 
-.covered-by-large-tests {
- background-color: {{success-low}};
-}
-
-.not-covered {
- background-color: {{danger}};
-}
-
-.not-coverable {
- background-color: {{warning}};
-}
