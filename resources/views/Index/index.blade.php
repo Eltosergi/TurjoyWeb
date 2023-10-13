@@ -15,42 +15,50 @@
             <div class="my-8 mx-auto">
                 <a class="px-6 py-3 bg-green-500 hover:bg-green-700 transition-all text-white font-semibold rounded-lg"
                     href="{{ route('welcome') }}">Volver al menu de administrador</a> 
+            
+
+                <h1>
+                    <style>
+                        .info-box {
+                            display: fixed;
+                            justify-content: center;
+                            align-items: center;
+                            height: 10vh;
+                            margin: 1vh;
+                            background-color: #f0f0f0;
+                        }
+
+                        .info-message {
+                            color: #333;
+                            padding: 20px;
+                            text-align: center;
+                            border-radius: 5px;
+                        }
+
+                        .correctly-box{
+                            background-color: #a8e6cf;
+                        }
+
+                       .error-box {
+                            background-color: #ff8a80;
+                        }
+
+                       .warning-box {
+                            background-color: #e4e6a8;
+                        }
+                    </style>
+                </h1>
+
+                <body>
+                   <div class="info-message">
+                        <h2>Simbología de colores y errores</h2>
+                   <div class="info-box">
+                        <p class="correctly-box">se cargaron correctamente</p>
+                        <p class="error-box">No se pudieron cargar correctamente</p>
+                        <p class="warning-box">Rutas repetidas</p>
+                    </div>
+                </body>
             </div>
-
-            <h2>
-                <style>
-                    .info-box {
-                        position: fixed;
-                        top: 0;
-                        right: 0;
-                        padding: 10px;
-                        background-color: #a8e6cf;
-                        color: #333;
-                        border-bottom-left-radius: 5px;
-                    }
-
-                   .info-box p {
-                        margin: 0;
-                        padding: 5px 10px;
-                    }
-
-                   .error-box {
-                        background-color: #ff8a80;
-                    }
-
-                   .warning-box {
-                        background-color: #e4e6a8;
-                    }
-                </style>
-            </h2>
-            <body>
-               <div class="info-box">
-                    <p>se cargaron correctamente</p>
-                    <p class="error-box">No se pudieron cargar</p>
-                    <p class="warning-box">Repetidos</p>
-                </div>
-            </body>
-
 
             @if (count($validRows) > 0)
                 <h3 class="text-2xl text-gray-custom-50 font-semibold uppercase text-center">Listado de viajes
