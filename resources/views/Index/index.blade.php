@@ -10,14 +10,14 @@
     {{ count($invalidRows) }}
     {{ count($duplicatedRows) }} --}}
 
+
     @if (isset($validRows) || isset($invalidRows) || isset($duplicatedRows))
         <div class="flex flex-1 flex-col gap-2">
             <div class="my-8 mx-auto">
                 <a class="px-6 py-3 bg-green-500 hover:bg-green-700 transition-all text-white font-semibold rounded-lg"
                     href="{{ route('welcome') }}">Volver al menu de administrador</a> 
-            
-
                 <h1>
+    
                     <style>
                         .info-box {
                             display: fixed;
@@ -25,7 +25,7 @@
                             align-items: center;
                             height: 10vh;
                             margin: 1vh;
-                            background-color: #f0f0f0;
+                            background-color: white;
                         }
 
                         .info-message {
@@ -50,12 +50,12 @@
                 </h1>
 
                 <body>
-                   <div class="info-message">
+                   <div class="info-message font-semibold">
                         <h2>Simbología de colores y errores</h2>
                    <div class="info-box">
-                        <p class="correctly-box">se cargaron correctamente</p>
+                        <p class="correctly-box">Se cargaron correctamente</p>
                         <p class="error-box">No se pudieron cargar correctamente</p>
-                        <p class="warning-box">Rutas repetidas</p>
+                        <p class="warning-box">Rutas repetidas en el mismo excel</p>
                     </div>
                 </body>
             </div>
@@ -64,19 +64,19 @@
                 <h3 class="text-2xl text-gray-custom-50 font-semibold uppercase text-center">Listado de viajes
                 </h3>
                 <div class="relative overflow-x-auto sm:rounded-lg mb-2">
-                    <table class="w-1/2 mx-auto text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-gray-custom-50 uppercase bg-green-600 dark:bg-gray-700 dark:text-gray-400">
+                    <table class="w-1/2 mx-auto text-sm text-left dark:text-gray-400">
+                        <thead class="text-xs text-gray-custom-50 uppercase bg-gray-custom-150 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-6 py-3 text-f-gray-custom-100 font-bold">
                                     Origen
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-white font-bold">
+                                <th scope="col" class="px-6 py-3 text-f-gray-custom-100 font-bold">
                                     Destino
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-white font-bold">
+                                <th scope="col" class="px-6 py-3 text-f-gray-custom-100 font-bold">
                                     Cantidad de asientos
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-white font-bold">
+                                <th scope="col" class="px-6 py-3 text-f-gray-custom-100 font-bold">
                                     Tarifa base
                                 </th>
                             </tr>
@@ -142,9 +142,9 @@
         </div>
     </div>
     @else
-        <div class="flex flex-col flex-1 justify-center items-center my-6">
+        <div class="flex flex-col flex-1 items-center my-6">
             <div class="mb-12 mx-auto">
-                <a class="px-6 py-3 bg-green-custom hover:bg-red-700 transition-all text-black font-semibold rounded-lg"
+                <a class="px-6 py-3 bg-green-custom hover:bg-red-custom transition-all text-black font-semibold rounded-lg"
                     href="{{ route('welcome') }}">Volver a menú administrador</a>
             </div>
             <form class="flex flex-col items-center w-1/2" action="{{route('travel.check')}}" method="POST"
@@ -155,20 +155,41 @@
                         <span class="bg-green-custom hover:bg-blue-700 transition-all text-white font-semibold rounded-lg px-4 py-2">
                             Subir archivo 
                         </span>
-                        <input type="file" name="document" id="document" class="hidden">
-                        <span class="ml-2" style="opacity: 0.4">Subir archivos solo que pese 5MB</span>
+                        <input type="file" name="document" id="document" class="hidden" onchange="displayFileName(this)">
+                        <span id = "file-name"class="ml-2" style="opacity: 0.4">Subir archivos solo que pese 5MB</span>
                     </label>
+                    <script>
+                        function displayFileName(input) {
+                            var fileNameSpan = document.getElementById('file-name');
+
+                            // Verifica si se ha seleccionado un archivo
+                            if (input.files.length > 0) {
+                                // Obtiene el nombre del archivo seleccionado
+                                var fileName = input.files[0].name;
+
+                                // Actualiza el contenido del elemento span con el nombre del archivo
+                                fileNameSpan.textContent = fileName;
+                            } else {
+                                // Si no se selecciona un archivo, muestra el mensaje predeterminado
+                                fileNameSpan.textContent = "Subir archivos solo que pese 5MB";
+                            }
+                        }
+                    </script>
                     @error('document')
                         <p class="bg-red-custom font-semibold my-4 text-lg text-center text-red-800 px-4 py-3 rounded-lg">
                             {{ $message }}</p>
                     @enderror
+                    @if(Session::has('error'))
+                        <div class="alert alert-danger bg-red-custom font-semibold my-4 text-lg text-center text-red-800 px-4 py-3 rounded-lg">
+                            {{ Session::get('error') }}
+                        </div>
+                    @endif
                 </div>
 
                 <button class="lg:w-1/4 my-4 p-2 bg-green-custom rounded-sm text-black font-semibold" type="submit">
                     Importar viajes
                 </button>
-            </form>
-        </div>
+            </form> 
     @endif
 
 @endsection
