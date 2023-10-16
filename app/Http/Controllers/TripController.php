@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Imports\TripImport;
 use Maatwebsite\Excel\Facades\Excel;
 use app\Helpers\MyHelper;
+use Illuminate\Support\Facades\Session;
 
 class TripController extends Controller
 {
@@ -45,16 +46,20 @@ class TripController extends Controller
         //Validar el archivo general
         $messages = makeMessages();
         $this->validate($request, [
-            'document' => ['required', 'max:5120', 'mimes:xlsx'],
+            'document' => ['max:5120 ', 'required', 'mimes:xlsx'],
         ], $messages);
 
         //Validar el archivo excel en detalle
         if ($request->hasFile('document')) {
             $file = request()->file('document');
-
+            
             $import = new TripImport();
             Excel::import($import, $file);
-
+            if(!$import->getValidRows() || !$import->getInvalidRows() || !$import->getDuplicatedRows()){
+                // Agregar mensaje de error a la sesión
+                Session::flash('error', 'Hubo un problema con la importación. Por favor, verifica el archivo.');
+                return redirect()->route('index');
+            }
             // Obtener filas válidas e inválidas
             $validRows = $import->getValidRows();
             $invalidRows = $import->getInvalidRows();
