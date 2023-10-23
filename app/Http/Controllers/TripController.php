@@ -55,7 +55,7 @@ class TripController extends Controller
             
             $import = new TripImport();
             Excel::import($import, $file);
-            if(!$import->getValidRows() || !$import->getInvalidRows() || !$import->getDuplicatedRows()){
+            if(!$import->getValidRows() && !$import->getInvalidRows() && !$import->getDuplicatedRows()){
                 // Agregar mensaje de error a la sesión
                 Session::flash('error', 'Hubo un problema con la importación. Por favor, verifica el archivo.');
                 return redirect()->route('index');
@@ -66,7 +66,11 @@ class TripController extends Controller
             $duplicatedRows = $import->getDuplicatedRows();
 
             // dd($validRows, $invalidRows, $duplicatedRows);
-
+            if(count($validRows) == 0 )
+            {
+                Session::flash('error', 'El archivo esta vacio');
+                return redirect()->route('index');
+            }
             // Agregar o actualizar las filas en la base de datos
             foreach ($validRows as $row) {
                 $origin = $row['origen'];

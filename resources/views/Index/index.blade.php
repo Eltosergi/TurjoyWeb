@@ -13,9 +13,9 @@
 
     @if (isset($validRows) || isset($invalidRows) || isset($duplicatedRows))
         <div class="flex flex-1 flex-col gap-2">
-            <div class="my-8 mx-auto">
-                <a class="px-6 py-3 bg-green-500 hover:bg-green-700 transition-all text-white font-semibold rounded-lg"
-                    href="{{ route('welcome') }}">Volver al menu de administrador</a> 
+            <div class="my-24 mx-auto text-center">
+                <a class="px-6 py-3 bg-green-custom hover:bg-red-custom transition-all text-white font-semibold rounded-lg"
+                    href="{{ route('welcome') }}">Volver al menú de administrador</a> 
                 <h1>
     
                     <style>
@@ -59,7 +59,6 @@
                     </div>
                 </body>
             </div>
-
             @if (count($validRows) > 0)
                 <h3 class="text-2xl text-gray-custom-50 font-semibold uppercase text-center">Listado de viajes
                 </h3>
@@ -142,9 +141,9 @@
         </div>
     </div>
     @else
-        <div class="flex flex-col flex-1 items-center my-6">
+        <div class="flex flex-col flex-1 items-center my-24">
             <div class="mb-12 mx-auto">
-                <a class="px-6 py-3 bg-green-custom hover:bg-red-custom transition-all text-black font-semibold rounded-lg"
+                <a class="px-6 py-3 bg-green-custom hover:bg-red-custom transition-all text-white font-semibold rounded-lg"
                     href="{{ route('welcome') }}">Volver a menú administrador</a>
             </div>
             <form class="flex flex-col items-center w-1/2" action="{{route('travel.check')}}" method="POST"
@@ -186,7 +185,7 @@
                     @endif
                 </div>
 
-                <button class="lg:w-1/4 my-4 p-2 bg-green-custom rounded-sm text-black font-semibold" type="submit">
+                <button class="lg:w-1/4 my-4 p-2 hover:bg-blue-700 bg-green-custom rounded-lg text-white font-semibold" type="submit">
                     Importar viajes
                 </button>
             </form> 
