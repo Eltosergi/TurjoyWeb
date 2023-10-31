@@ -105,4 +105,43 @@ class TripController extends Controller
             return redirect()->route('travelsAdd.index');
         }
     }
+
+    public function getOrigins()
+    {
+        $origins = Trip::distinct()->orderBy('origin','asc')->pluck('origin');
+
+        return response()->json([
+            'origins' => $origins,
+        ]);
+    }
+
+    public function getDestinations()
+    {
+        $destinations = Trip::distinct()->orderBy('destination','asc')->pluck('destination');
+
+        return response()->json([
+            'destinations' => $destinations,
+        ]);
+    }
+    public function searchDestinations($origin)
+    {
+        $destinations = Trip::where('origin', $origin)->orderBy('destination','asc')->pluck('destination');
+
+        return response()->json([
+            'destination' => $destinations,
+        ]);
+    }
+    public function seatings($origins, $destinations)
+    {
+
+    }
+
+    public function reserveIndex()
+    {
+        $travels = Trip::get()->count();
+
+        return view('reserve',[
+            'countTravels' => $travels,
+        ]);
+    }
 }

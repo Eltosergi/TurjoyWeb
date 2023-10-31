@@ -26,19 +26,23 @@ Route::get('login', function () {
     return view('auth.login');
 })->name('login');
 
-Route::get('/logout', [LogoutController::class ,'logout'])->name('logout');
+
 
 Route::post('login',[LoginController::class, 'store'])->name('login.store');
+Route::get('/logout', [LogoutController::class ,'logout'])->name('logout');
 
+Route::get('reserva', [TripController::class, 'reserveIndex'])->name('reserve');
 
-Route::get('test',function (){
-    return view('test');
-})->name('test');
+Route::get('/get/origins', [TripController::class, 'getOrigins']);
+Route::get('/get/destinations/{origin}', [TripController::class, 'searchDestinations']);
+Route::get('/seating/{origin}/{destination}', [TripController::class, 'seatings']);
+Route::post('/check',[TripController::class, 'checkTravel']);
+
 
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/index', [UserController::class, 'dashboardIndex'])->name('index');
+    Route::get('/cargarviajes', [UserController::class, 'dashboardIndex'])->name('index');
     Route::get('/add/travel', [TripController::class, 'indexAddTravels'])->name('travels.index');
     Route::post('/addtravel', [TripController::class, 'travelCheck'])->name('travel.check');
     Route::get('/result/travels', [TripController::class, 'indexTravels'])->name('travelsAdd.index');

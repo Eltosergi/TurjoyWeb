@@ -55,7 +55,7 @@
                                         {{ $validRow['tarifa_base'] }}
                                     </td>
                                 </tr>
-                            @endforeach 
+                            @endforeach
             @endif
             @if (count($invalidRows))
                             @foreach ($invalidRows as $invalidRow)
@@ -100,7 +100,7 @@
     </div>
     @else
         <div class="flex flex-col flex-1 justify-center items-center my-6">
-            <div class="mb-12 mx-auto">
+            <div class="mt-16 mb-12 mx-auto">
                 <a class="px-6 py-3 bg-green-custom hover:bg-red-700 transition-all text-black font-semibold rounded-lg"
                     href="{{ route('welcome') }}">Volver a menú administrador</a>
             </div>
@@ -110,7 +110,7 @@
                 <div>
                     <label for="document" class="cursor-pointer">
                         <span class="bg-green-custom hover:bg-blue-700 transition-all text-white font-semibold rounded-lg px-4 py-2">
-                            Subir archivo 
+                            Subir archivo
                         </span>
                         <input type="file" name="document" id="document" class="hidden">
                         <span class="ml-2" style="opacity: 0.4">Subir archivos solo que pese 5MB</span>
