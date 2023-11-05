@@ -5,6 +5,7 @@ use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,12 +27,15 @@ Route::get('login', function () {
     return view('auth.login');
 })->name('login');
 
+Route::get('home', function () {
+    return view('welcome');
 
+});
 
 Route::post('login',[LoginController::class, 'store'])->name('login.store');
 Route::get('/logout', [LogoutController::class ,'logout'])->name('logout');
 
-Route::get('reserva', [TripController::class, 'reserveIndex'])->name('reserve');
+
 
 Route::get('/get/origins', [TripController::class, 'getOrigins']);
 Route::get('/get/destinations/{origin}', [TripController::class, 'searchDestinations']);
@@ -39,6 +43,11 @@ Route::get('/seating/{origin}/{destination}', [TripController::class, 'seatings'
 Route::post('/check',[TripController::class, 'checkTravel']);
 
 
+// PREGUNTAR CLIENTE: ¿solo los invitados (usuarios) pueden acceder al reservar?
+Route::middleware(['guest'])->group(function () {
+    Route::get('reserva', [TripController::class, 'reserveIndex'])->name('reserve');
+
+});
 
 
 Route::middleware(['auth'])->group(function () {

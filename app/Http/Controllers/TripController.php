@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Imports\TripImport;
 use Maatwebsite\Excel\Facades\Excel;
 use app\Helpers\MyHelper;
+use App\Models\Ticket;
+use App\Models\Voucher;
 
 class TripController extends Controller
 {
@@ -131,14 +133,25 @@ class TripController extends Controller
             'destination' => $destinations,
         ]);
     }
-    public function seatings($origins, $destinations)
+    public function seatings($origin, $destination)
     {
+        //$ticketId = Ticket::ticketId($origin, $destination, $selectedDate);
+        //$usedSeats = Voucher::usedSeats($ticketId);
+
+        $seats = Trip::where('origin', $origin)
+        ->where('destination', $destination)
+        ->pluck('qtySeats');
+        return response()->json([
+            'seats' => $seats
+        ]);
+
+
 
     }
-
     public function reserveIndex()
     {
         $travels = Trip::get()->count();
+
 
         return view('reserve',[
             'countTravels' => $travels,

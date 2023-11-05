@@ -5,6 +5,7 @@ Página principal
 @endsection
 
 @section('content')
+<link rel="stylesheet" href="public/css/styles.css">
 
 
 <div id="default-carousel" class="relative w-full h-96" data-carousel="slide">
@@ -57,6 +58,10 @@ Página principal
         </span>
     </button>
     <br/>
+
+    <button type="button"  class="px-6 py-3.5 text-base font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center" style="margin-top: 5%; margin-left: 45%; background-color:#2ECC71;">
+        <a href="{{route('reserve')}}">Reserva ya!</a>
+    </button>
 
 
 
