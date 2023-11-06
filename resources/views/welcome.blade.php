@@ -5,12 +5,12 @@ Página principal
 @endsection
 
 @section('content')
-<link rel="stylesheet" href="public/css/styles.css">
+<link rel="stylesheet" href="resources/css/app.css">
 
 
 <div id="default-carousel" class="relative w-full h-96" data-carousel="slide">
     <!-- Carousel wrapper -->
-    <div class="relative h- overflow-hidden rounded-lg md:h-[75%]">
+    <div class="relative h- overflow-hidden rounded-lg md:h-[78%]">
          <!-- Item 1 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
             <img src="img/imagen1.webp" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
@@ -33,7 +33,7 @@ Página principal
         </div>
     </div>
     <!-- Slider indicators -->
-    <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
+    <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-24 left-1/2">
         <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
         <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
         <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
@@ -59,9 +59,11 @@ Página principal
     </button>
     <br/>
 
-    <button type="button"  class="px-6 py-3.5 text-base font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center" style="margin-top: 5%; margin-left: 45%; background-color:#2ECC71;">
+    <button type="button"  class="px-6 py-3.5 text-base font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center" style="margin-top: 5%; margin-left: 46%; background-color:#2ECC71;">
         <a href="{{route('reserve')}}">Reserva ya!</a>
     </button>
+
+
 
 
 

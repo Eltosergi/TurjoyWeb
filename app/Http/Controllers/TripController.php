@@ -8,7 +8,7 @@ use App\Imports\TripImport;
 use Maatwebsite\Excel\Facades\Excel;
 use app\Helpers\MyHelper;
 use App\Models\Ticket;
-use App\Models\Voucher;
+
 
 class TripController extends Controller
 {
@@ -108,6 +108,7 @@ class TripController extends Controller
         }
     }
 
+
     public function getOrigins()
     {
         $origins = Trip::distinct()->orderBy('origin','asc')->pluck('origin');
@@ -135,14 +136,16 @@ class TripController extends Controller
     }
     public function seatings($origin, $destination)
     {
-        //$ticketId = Ticket::ticketId($origin, $destination, $selectedDate);
-        //$usedSeats = Voucher::usedSeats($ticketId);
-
+        // Realizar funcionalidad que permita restar los asientos usados a los asientos disponibles
         $seats = Trip::where('origin', $origin)
         ->where('destination', $destination)
         ->pluck('qtySeats');
+        $price = Trip::where('origin', $origin)
+        ->where('destination', $destination)
+        ->pluck('price');
         return response()->json([
-            'seats' => $seats
+            'seats' => $seats,
+            'price' => $price,
         ]);
 
 
@@ -153,8 +156,9 @@ class TripController extends Controller
         $travels = Trip::get()->count();
 
 
+
         return view('reserve',[
-            'countTravels' => $travels,
+           'countTravels' => $travels,
         ]);
     }
 }
