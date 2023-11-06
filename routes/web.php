@@ -17,9 +17,39 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('index',function (){
-    return view('Index.index');
-})->name('index');
+Route::get('login', function () {
+    return view('auth.login');
+})->name('login');
+
+Route::get('home', function () {
+    return view('welcome');
+
+});
+
+Route::post('login',[LoginController::class, 'store'])->name('login.store');
+Route::get('/logout', [LogoutController::class ,'logout'])->name('logout');
+
+
+
+Route::get('/get/origins', [TripController::class, 'getOrigins']);
+Route::get('/get/destinations/{origin}', [TripController::class, 'searchDestinations']);
+Route::get('/seating/{origin}/{destination}', [TripController::class, 'seatings']);
+Route::post('/check',[TripController::class, 'checkTravel']);
+
+
+Route::get('/test,' ,function (){
+    return view('reserva');
+});
+// ERROR: GET method not supported for this route. Supported methods: POST.
+Route::post('/test', [TicketController::class, 'storeTicket'])->name('ticket.store');
+
+
+// PREGUNTAR CLIENTE: ¿solo los invitados (usuarios) pueden acceder al reservar?
+Route::middleware(['guest'])->group(function () {
+    Route::get('reserva', [TripController::class, 'reserveIndex'])->name('reserve');
+
+});
+
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/add/travel', [TripController::class, 'indexAddTravels'])->name('travels.index');

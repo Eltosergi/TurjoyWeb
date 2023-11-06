@@ -6,6 +6,9 @@ use App\Models\Trip;
 use Illuminate\Http\Request;
 use App\Imports\TripsImport;
 use Maatwebsite\Excel\Facades\Excel;
+use app\Helpers\MyHelper;
+use App\Models\Ticket;
+
 
 class TravelController extends Controller
 {
@@ -102,5 +105,55 @@ class TravelController extends Controller
 
             return redirect()->route('travelsAdd.index');
         }
+    }
+
+    public function getOrigins()
+    {
+        $origins = Trip::distinct()->orderBy('origin','asc')->pluck('origin');
+
+        return response()->json([
+            'origins' => $origins,
+        ]);
+    }
+
+    public function getDestinations()
+    {
+        $destinations = Trip::distinct()->orderBy('destination','asc')->pluck('destination');
+
+        return response()->json([
+            'destinations' => $destinations,
+        ]);
+    }
+    public function searchDestinations($origin)
+    {
+        $destinations = Trip::where('origin', $origin)->orderBy('destination','asc')->pluck('destination');
+
+        return response()->json([
+            'destination' => $destinations,
+        ]);
+    }
+    public function seatings($origin, $destination)
+    {
+        //$ticketId = Ticket::ticketId($origin, $destination, $selectedDate);
+        //$usedSeats = Voucher::usedSeats($ticketId);
+
+        $seats = Trip::where('origin', $origin)
+        ->where('destination', $destination)
+        ->pluck('qtySeats');
+        return response()->json([
+            'seats' => $seats
+        ]);
+
+
+
+    }
+    public function reserveIndex()
+    {
+        $travels = Trip::get()->count();
+
+
+        return view('reserve',[
+            'countTravels' => $travels,
+        ]);
     }
 }
