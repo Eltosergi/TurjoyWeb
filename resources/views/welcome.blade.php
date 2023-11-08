@@ -1,40 +1,26 @@
 @extends('layouts.app')
 
 @section('title')
-Home Page
+Página principal
 @endsection
+
 @section('content')
-<link rel="stylesheet" href="resources/css/app.css">
 
 
 <div id="default-carousel" class="relative w-full h-96" data-carousel="slide">
     <!-- Carousel wrapper -->
-    <div class="relative h- overflow-hidden rounded-lg md:h-[78%]">
+    <div class="relative h- overflow-hidden rounded-lg md:h-[75%]">
          <!-- Item 1 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
             <img src="img/imagen1.webp" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
         </div>
-          @endauth
-          @guest
-            <!-Dentro de esta etiqueta solo lo ve el usuario invitado->
-            <div class="bg-color: #F4F4F4 text-white h-3/4 w-1/4 p-6">
-            <li>
-            <a href="{{route('welcome')}}" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Inicio</a>
-              </li>
-              <li>
-                <a href="{{route('login')}}" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Iniciar Sesión</a>
-              </li>
-              <li>
-                <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Proximamente</a>
-              </li>
-            </div>
-          @endguest
-        </ul>
-
-
-        <nav class="navbar fixed-bottom navbar-light h-100" style="background-color:#0A74DA">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Fono Ayuda: +56939309938</a>
+        <!-- Item 2 -->
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <img src="img/imagen2.webp" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+        </div>
+        <!-- Item 3 -->
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <img src="img/imagen3.webp" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
         </div>
         <!-- Item 4 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
@@ -71,10 +57,6 @@ Home Page
         </span>
     </button>
     <br/>
-
-    <button type="button"  class="px-6 py-3.5 text-base font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center" style="margin-top: 5%; margin-left: 45%; background-color:#2ECC71;">
-        <a href="{{route('reserve')}}">Reserva ya!</a>
-    </button>
 
 
 

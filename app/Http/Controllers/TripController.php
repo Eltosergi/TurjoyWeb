@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Trip;
 use Illuminate\Http\Request;
-use App\Imports\TripsImport;
 use Maatwebsite\Excel\Facades\Excel;
-use app\Helpers\MyHelper;
 use App\Models\Ticket;
+use App\Imports\TripImport;
+use app\Helpers\MyHelper;
+use Illuminate\Support\Facades\Session;
 
-
-class TravelController extends Controller
+class TripController extends Controller
 {
     public function indexAddTravels()
     {
@@ -25,7 +25,7 @@ class TravelController extends Controller
             session(['duplicatedRows' => []]);
         }
 
-        return view('admin.travel.index', [
+        return view('Index.index', [
             'validRows' => session('validRows'),
             'invalidRows' => session('invalidRows'),
             'duplicatedRows' => session('duplicatedRows')
@@ -34,7 +34,7 @@ class TravelController extends Controller
 
     public function indexTravels()
     {
-        return view('admin.travel.index', [
+        return view('Index.index', [
             'validRows' => session('validRows'),
             'invalidRows' => session('invalidRows'),
             'duplicatedRows' => session('duplicatedRows')
@@ -46,46 +46,54 @@ class TravelController extends Controller
         //Validar el archivo general
         $messages = makeMessages();
         $this->validate($request, [
-            'document' => ['required', 'max:5120', 'mimes:xlsx'],
+            'document' => ['max:5120 ', 'required', 'mimes:xlsx'],
         ], $messages);
 
         //Validar el archivo excel en detalle
         if ($request->hasFile('document')) {
             $file = request()->file('document');
-
-            $import = new TravelsImport();
+            
+            $import = new TripImport();
             Excel::import($import, $file);
-
+            if(!$import->getValidRows() && !$import->getInvalidRows() && !$import->getDuplicatedRows()){
+                // Agregar mensaje de error a la sesión
+                Session::flash('error', 'Hubo un problema con la importación. Por favor, verifica el archivo.');
+                return redirect()->route('index');
+            }
             // Obtener filas válidas e inválidas
             $validRows = $import->getValidRows();
             $invalidRows = $import->getInvalidRows();
             $duplicatedRows = $import->getDuplicatedRows();
 
             // dd($validRows, $invalidRows, $duplicatedRows);
-
+            if(count($validRows) == 0 )
+            {
+                Session::flash('error', 'El archivo esta vacio');
+                return redirect()->route('index');
+            }
             // Agregar o actualizar las filas en la base de datos
             foreach ($validRows as $row) {
                 $origin = $row['origen'];
                 $destination = $row['destino'];
 
                 // Verifica si la fila ya existe en la base de datos
-                $travel = Travel::where('origin', $origin)
+                $travel = Trip::where('origin', $origin)
                     ->where('destination', $destination)
                     ->first();
 
                 if ($travel) {
                     // Si existe, realiza una actualización
                     $travel->update([
-                        'seat_quantity' => $row['cantidad_de_asientos'],
-                        'base_rate' => $row['tarifa_base'],
+                        'qtySeats' => $row['cantidad_de_asientos'],
+                        'price' => $row['tarifa_base'],
                     ]);
                 } else {
                     // Si no existe, inserta un nuevo viaje a la base de datos
-                    Travel::create([
+                    Trip::create([
                         'origin' => $origin,
                         'destination' => $destination,
-                        'seat_quantity' => $row['cantidad_de_asientos'],
-                        'base_rate' => $row['tarifa_base'],
+                        'qtySeats' => $row['cantidad_de_asientos'],
+                        'price' => $row['tarifa_base'],
                     ]);
                 }
             }

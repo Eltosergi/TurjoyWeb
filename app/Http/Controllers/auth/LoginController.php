@@ -9,12 +9,12 @@ use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     //
-
-
-
     public function store(Request $request)
     {
+        //Error messages
         $messages = makeMessages();
+
+        //User validation
         $this->validate($request, [
             'email'=> ['required'],
             'password' => ['required']
@@ -27,7 +27,9 @@ class LoginController extends Controller
         ])){
             return back()->with('message', 'usuario no registrado o contraseña incorrecta');
         }
-        //Ingresar ruta del cargar viajes
+
+
+        //Redirect to welcome page
         return redirect()->route('welcome');
     }
 }
