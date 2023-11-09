@@ -25,7 +25,7 @@ class TripController extends Controller
             session(['duplicatedRows' => []]);
         }
 
-        return view('Index.index', [
+        return view('admin.trips.index', [
             'validRows' => session('validRows'),
             'invalidRows' => session('invalidRows'),
             'duplicatedRows' => session('duplicatedRows')
@@ -34,7 +34,7 @@ class TripController extends Controller
 
     public function indexTravels()
     {
-        return view('Index.index', [
+        return view('admin.trips.index', [
             'validRows' => session('validRows'),
             'invalidRows' => session('invalidRows'),
             'duplicatedRows' => session('duplicatedRows')
@@ -134,21 +134,29 @@ class TripController extends Controller
             'destination' => $destinations,
         ]);
     }
-    public function seatings($origin, $destination)
+    public function seatings($origin, $destination, $date)
     {
-        // Realizar funcionalidad que permita restar los asientos usados a los asientos disponibles
-        $seats = Trip::where('origin', $origin)
-        ->where('destination', $destination)
-        ->pluck('qtySeats');
-        $price = Trip::where('origin', $origin)
-        ->where('destination', $destination)
-        ->pluck('price');
-        return response()->json([
-            'seats' => $seats,
-            'price' => $price,
-        ]);
-
-
+        $trip = Trip::where('origin', 'Antofagasta')
+        ->where('destination', 'Calama')
+        ->first();
+        if($trip){
+            $usedSeats = Ticket::where('trips_id', $trip->id)
+            ->where('date', '2023-11-09')
+            ->sum('seat');
+            if(!$usedSeats){
+                $seats = $trip->qtySeats;
+                return response()->json([
+                    'seats' => $seats,
+                    'trip' => $trip,
+                ]);
+            }else{
+                $seats = $trip->qtySeats - $usedSeats;
+                return response()->json([
+                    'seats' => $seats,
+                    'trip' => $trip,
+                ]);
+            }
+        }
 
     }
     public function reserveIndex()
@@ -157,7 +165,8 @@ class TripController extends Controller
 
 
 
-        return view('reserve',[
+
+        return view('client.reserve',[
            'countTravels' => $travels,
         ]);
     }

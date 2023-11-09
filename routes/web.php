@@ -6,7 +6,7 @@ use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TicketController;
-
+use App\Http\Controllers\VoucherController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 
 Route::get('login', function () {
-    return view('auth.login');
+    return view('admin.auth.login');
 })->name('login');
 
 Route::get('home', function () {
@@ -39,15 +39,13 @@ Route::get('/logout', [LogoutController::class ,'logout'])->name('logout');
 
 Route::get('/get/origins', [TripController::class, 'getOrigins']);
 Route::get('/get/destinations/{origin}', [TripController::class, 'searchDestinations']);
-Route::get('/seating/{origin}/{destination}', [TripController::class, 'seatings']);
+Route::get('/seating/{origin}/{destination}/{date}', [TripController::class, 'seatings']);
 Route::post('/check',[TripController::class, 'checkTravel']);
 
 
-Route::get('/test,' ,function (){
-    return view('reserva');
-});
+
 // ERROR: GET method not supported for this route. Supported methods: POST.
-Route::post('/test', [TicketController::class, 'storeTicket'])->name('ticket.store');
+Route::post('/reservation', [TicketController::class, 'store'])->name('ticket.store');
 
 
 // PREGUNTAR CLIENTE: ¿solo los invitados (usuarios) pueden acceder al reservar?
@@ -63,3 +61,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/addtravel', [TripController::class, 'travelCheck'])->name('travel.check');
     Route::get('/result/travels', [TripController::class, 'indexTravels'])->name('travelsAdd.index');
 });
+
+
+Route::get('/travel-reservation/{id}', [VoucherController::class, 'generatePDF'])->name('generate.pdf');
+Route::get('download-pdf/{id}', [VoucherController::class, 'downloadPDF'])->name('pdf.download');
