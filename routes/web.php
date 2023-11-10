@@ -45,14 +45,16 @@ Route::post('/check',[TripController::class, 'checkTravel']);
 
 
 // ERROR: GET method not supported for this route. Supported methods: POST.
-Route::post('/reservation', [TicketController::class, 'store'])->name('ticket.store');
+
+
+Route::get('reserva', [TripController::class, 'reserveIndex'])->name('reserve');
+Route::post('reserva', [TicketController::class, 'store'])->name('ticket.store');
 
 
 // PREGUNTAR CLIENTE: ¿solo los invitados (usuarios) pueden acceder al reservar?
-Route::middleware(['guest'])->group(function () {
-    Route::get('reserva', [TripController::class, 'reserveIndex'])->name('reserve');
 
-});
+
+
 
 
 Route::middleware(['auth'])->group(function () {

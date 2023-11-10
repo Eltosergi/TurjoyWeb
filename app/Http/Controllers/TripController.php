@@ -136,12 +136,12 @@ class TripController extends Controller
     }
     public function seatings($origin, $destination, $date)
     {
-        $trip = Trip::where('origin', 'Antofagasta')
-        ->where('destination', 'Calama')
+        $trip = Trip::where('origin', $origin)
+        ->where('destination', $destination)
         ->first();
         if($trip){
             $usedSeats = Ticket::where('trips_id', $trip->id)
-            ->where('date', '2023-11-09')
+            ->where('date', $date)
             ->sum('seat');
             if(!$usedSeats){
                 $seats = $trip->qtySeats;

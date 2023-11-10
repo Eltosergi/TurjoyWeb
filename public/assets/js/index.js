@@ -12,6 +12,7 @@ const originErrorElement = document.getElementById('originError');
 const destinationErrorElement = document.getElementById('destinationError');
 const seatingErrorElement = document.getElementById('seatsError');
 const seatingElement = document.getElementById('seats');
+const seatingErrorElement2 = document.getElementById('noSeatsError');
 
 
 
@@ -30,7 +31,14 @@ const verifySeating = () => {
         .then(data => {
             const seating = data.seats;
             const trip = data.trip;
+            if(seating == 0){
+                seatingErrorElement2.style.display = 'block';
+                selectOrigin.value = '';
+                selectDestination.value = '';
+                selectDate.value = '';
+            }else{
             addSeatsToSelect(seating, trip);
+            }
         })
         .catch(error => {
             console.error('Error:', error);
@@ -219,7 +227,6 @@ selectDestination.addEventListener('change', verifySeating );
 const button = document.getElementById("acceptButton");
 
 
-
 button.addEventListener('click', (e) => {
     verifySelects();
     const selectedOrigin = document.getElementById('origins').value;
@@ -228,8 +235,17 @@ button.addEventListener('click', (e) => {
     const selectedseats = document.getElementById('seats').value;
     const date = new Date(selectedDate);
     const dateFormatted = date.toLocaleDateString('es-ES', selectedDate )
-    const basePrice = document.getElementById('basePrice').value;
-    const total = selectedseats * basePrice
+    const basePrice = document.getElementById('basePrice');
+    const total = document.getElementById('basePrice').value * selectedseats;
+    basePrice.value = total;
+
+    console.log(selectedOrigin);
+    console.log(selectedDestination);
+    console.log(selectedDate);
+    console.log(selectedseats);
+    console.log(total);
+
+
 
     e.preventDefault();
 
@@ -247,6 +263,7 @@ button.addEventListener('click', (e) => {
         }).then((result) => {
             if (result.isConfirmed) {
                 form.submit();
+
             }
         });
     }

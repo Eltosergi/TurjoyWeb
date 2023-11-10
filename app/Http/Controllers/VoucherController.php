@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ticket;
 use App\Models\Voucher;
+use App\Models\Trip;
 use Dompdf\Dompdf;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -34,37 +35,41 @@ class VoucherController extends Controller
         $ticket = Ticket::findOrFail($id_ticket);
 
         // Crear una instacia de Dompdf
-        $domPDF = new Dompdf();
+        //$domPDF = new Dompdf();
 
         $data = [
             'ticket' => $ticket,
             'date' => date('d-m-Y'),
         ];
 
-        $view_html = view('voucher.pdf', $data)->render();
+       // $view_html = view('voucher.pdf', $data)->render();
 
-        $domPDF->loadHtml($view_html);
+        //$domPDF->loadHtml($view_html);
 
-        $domPDF->setPaper('A4', 'portrait');
+        //$domPDF->setPaper('A4', 'portrait');
 
-        $domPDF->render();
+       // $domPDF->render();
 
         // Generar nombre de archivo aleatorio
-        $filename = 'user_'.Str::random(10).'.pdf';
+        //$filename = 'user_'.Str::random(10).'.pdf';
 
         // Guardar el PDF en la carpeta public
-        $path = 'pdfs\\'.$filename;
-        Storage::disk('public')->put($path, $domPDF->output());
+        //$path = 'pdfs\\'.$filename;
+        //Storage::disk('public')->put($path, $domPDF->output());
 
         $voucher = Voucher::create([
-            'uri' => $path,
-            'ticket_id' => $id_ticket,
+            'uri' => 'test',
             'date' => date('Y-m-d'),
+            'ticket_id' => $id_ticket
         ]);
+        $trip = Trip::findOrFail($ticket->trips_id);
 
-        return view('client.order_success', [
+
+
+        return view('client.reserveSuccess', [
             'ticket' => $ticket,
             'voucher' => $voucher,
+            'trip' => $trip,
         ]);
     }
 
