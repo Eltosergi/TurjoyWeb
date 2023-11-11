@@ -30,9 +30,9 @@ class VoucherController extends Controller
         return response()->download($path, $filename, ['Content-Type' => $mimeType]);
     }
 
-    public function generatePDF($id_ticket)
+    public function generatePDF($idTicket)
     {
-        $ticket = Ticket::findOrFail($id_ticket);
+        $ticket = Ticket::findOrFail($idTicket);
 
         // Crear una instacia de Dompdf
         //$domPDF = new Dompdf();
@@ -60,9 +60,9 @@ class VoucherController extends Controller
         $voucher = Voucher::create([
             'uri' => 'test',
             'date' => date('Y-m-d'),
-            'ticket_id' => $id_ticket
+            'ticketId' => $idTicket
         ]);
-        $trip = Trip::findOrFail($ticket->trips_id);
+        $trip = Trip::findOrFail($ticket->tripId);
 
 
 

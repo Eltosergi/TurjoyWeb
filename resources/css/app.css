@@ -10,18 +10,9 @@
 }
 
 
-
-#form{
-    display: flex;
-    justify-content: center;
-    margin-top: 10%;
-    height: 600px;
-    width: 600px;
-    background-color: #0A74DA;
-    position: absolute;
-    top: 250px;
-    left: 50%;
-    transform: translate(-49%, -49%)
+#section{
+    margin-top: 100px;
+    margin-bottom: 50px;
 }
 
 label{
@@ -29,7 +20,7 @@ label{
 }
 
 #acceptButton{
-
+    margin-top: 10px;
     background-color: #2ECC71;
 }
 #rejectButton{
@@ -51,3 +42,7 @@ label{
 #destinantionError{
     background-color: #FF6B6B;
 }
+
+div.center {
+    text-align: center;
+  }

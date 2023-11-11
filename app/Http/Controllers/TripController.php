@@ -8,6 +8,7 @@ use App\Imports\TripImport;
 use Maatwebsite\Excel\Facades\Excel;
 use app\Helpers\MyHelper;
 use App\Models\Ticket;
+use Illuminate\Support\Facades\DB;
 
 
 class TripController extends Controller
@@ -140,7 +141,7 @@ class TripController extends Controller
         ->where('destination', $destination)
         ->first();
         if($trip){
-            $usedSeats = Ticket::where('trips_id', $trip->id)
+            $usedSeats = Ticket::where('tripId', $trip->id)
             ->where('date', $date)
             ->sum('seat');
             if(!$usedSeats){
@@ -161,13 +162,16 @@ class TripController extends Controller
     }
     public function reserveIndex()
     {
-        $travels = Trip::get()->count();
+        try{
 
+            $travels = Trip::get()->count();
+            return view('client.reserve',[
+            'countTravels' => $travels,
+            ]);
 
+        }catch(\Exception $e){
+            return \abort(500);
+        }
 
-
-        return view('client.reserve',[
-           'countTravels' => $travels,
-        ]);
     }
 }

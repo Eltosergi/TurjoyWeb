@@ -14,6 +14,6 @@ class Ticket extends Model
         'seat',
         'total',
         'date',
-        'trips_id'
+        'tripId'
     ];
 }
