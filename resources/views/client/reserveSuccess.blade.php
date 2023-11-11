@@ -9,8 +9,8 @@
     {{-- Detalle de la compra --}}
     <div class="flex flex-col items-center" style="margin-top: 150px;">
         <div class="w-1/3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" >
-            <div class="bg-cyan-600 p-10 rounded-t-lg" >
-                <p class="text-xl text-black text-center">Tu pago ha sido <br> <span class="font-bold text-2xl">realizado con
+            <div class="bg-blue-custom-50 p-10 rounded-t-lg" >
+                <p class="text-xl text-black text-center text-white">Tu viaje ha sido <br> <span class="font-bold text-2xl text-white">Reservado con
                         éxito</span></p>
             </div>
             <div class="flex flex-col p-5">
@@ -20,7 +20,7 @@
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <tbody>
                             <tr
-                                class="bg-cyan-100 border-b border-cyan-500 dark:bg-gray-800 dark:border-gray-700">
+                                class="bg-gray-custom-150 border-b border-blue-custom-50 dark:bg-gray-800 dark:border-gray-700">
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     Código de reserva
@@ -30,7 +30,7 @@
                                 </td>
                             </tr>
                             <tr
-                                class="bg-cyan-100 border-b border-cyan-500 dark:bg-gray-800 dark:border-gray-700">
+                                class="bg-gray-custom-150 border-b border-blue-custom-50 dark:bg-gray-800 dark:border-gray-700">
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     Ciudad de origen
@@ -39,7 +39,7 @@
                                     {{ $trip->origin }}
                                 </td>
                             </tr>
-                            <tr class="bg-cyan-100 border-b border-cyan-500">
+                            <tr class="bg-gray-custom-150 border-b border-blue-custom-50">
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     Ciudad de destino
@@ -48,7 +48,7 @@
                                     {{ $trip->destination }}
                                 </td>
                             </tr>
-                            <tr class="bg-cyan-100 border-b border-cyan-500">
+                            <tr class="bg-gray-custom-150 border-b border-blue-custom-50">
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     Día de la reserva
@@ -58,7 +58,7 @@
                                 </td>
                             </tr>
 
-                            <tr class="bg-cyan-100 border-b border-cyan-500">
+                            <tr class="bg-gray-custom-150 border-b border-blue-custom-50">
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     Cantidad de asientos
@@ -68,7 +68,7 @@
                                 </td>
                             </tr>
 
-                            <tr class="bg-cyan-100 border-b border-cyan-500">
+                            <tr class="bg-gray-custom-150 border-b border-blue-custom-50">
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     Fecha de la compra
@@ -78,13 +78,13 @@
                                 </td>
                             </tr>
 
-                            <tr class="bg-cyan-100 border-b border-cyan-500">
+                            <tr class="bg-gray-custom-150 border-b">
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     Total pagado
                                 </th>
                                 <td class="px-6 py-4">
-                                    {{ $ticket->total }}
+                                    {{ $ticket->total }} 
                                 </td>
                             </tr>
                         </tbody>
@@ -105,7 +105,7 @@
             <div class="flex items-center justify-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600" style="background-color:#0A74DA">
 
                 <a href="{{ route('welcome') }}" type="button"
-                    class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                    class="text-white w-4 bg-red-custom hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lm py-3 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 ">
                     Finalizar
                 </a>
             </div>
