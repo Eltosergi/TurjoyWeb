@@ -5,7 +5,7 @@ use Carbon\Carbon;
 use App\Models\Ticket;
 use Illuminate\Support\Str;
 
-RÉS-CHAPA
+
 function makeMessages()
 {
     $messages = [

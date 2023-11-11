@@ -41,10 +41,4 @@ class TicketController extends Controller
 
 
 
-=======
-
-class TicketController extends Controller
-{
-    //
-
 }
