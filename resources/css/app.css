@@ -4,34 +4,17 @@
 
 
 
-#fatherDiv{
-    position:relative;
-    z-index: -1;
-  }
 
-#acceptForm {
-    position: absolute;
-    background-color: white;
-    top: 20%;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    width: 300px;
-    height: 200px;
-    z-index: 1;
-  }
-#blur{
+.bg-red-custom {
     width: 100%;
-    height: 100%;
-    z-index: 1;
-    filter: blur(0px);
+
 }
-#form{
-    margin-top: 10%;
-    position: absolute;
-    top: 250px;
-    left: 50%;
-    transform: translate(-49%, -49%)
+
+
+#section{
+    margin-top: 100px;
+    margin-bottom: 50px;
+
 }
 
 label{
@@ -39,6 +22,9 @@ label{
 }
 
 #acceptButton{
+
+    margin-top: 10px;
+
     background-color: #2ECC71;
 }
 #rejectButton{
@@ -53,3 +39,16 @@ label{
     margin-top: 15%;
     top: 15%
 }
+
+#select{
+    width: auto;
+
+}
+#destinantionError{
+    background-color: #FF6B6B;
+}
+
+div.center {
+    text-align: center;
+  }
+

@@ -15,9 +15,11 @@ class UserController extends Controller
     {
         $user = auth()->user();
 
-    
-        return view('Index.index', [
+
+
+        return view('admin.trips.index', [
             'user' => $user,
         ]);
     }
 }
+

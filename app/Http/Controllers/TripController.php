@@ -8,7 +8,10 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Ticket;
 use App\Imports\TripImport;
 use app\Helpers\MyHelper;
-use Illuminate\Support\Facades\Session;
+
+use Illuminate\Support\Facades\DB;
+
+
 
 class TripController extends Controller
 {
@@ -25,7 +28,9 @@ class TripController extends Controller
             session(['duplicatedRows' => []]);
         }
 
-        return view('Index.index', [
+
+        return view('admin.trips.index', [
+
             'validRows' => session('validRows'),
             'invalidRows' => session('invalidRows'),
             'duplicatedRows' => session('duplicatedRows')
@@ -34,7 +39,10 @@ class TripController extends Controller
 
     public function indexTravels()
     {
-        return view('Index.index', [
+
+        return view('admin.trips.index', [
+
+
             'validRows' => session('validRows'),
             'invalidRows' => session('invalidRows'),
             'duplicatedRows' => session('duplicatedRows')
@@ -140,28 +148,47 @@ class TripController extends Controller
             'destination' => $destinations,
         ]);
     }
-    public function seatings($origin, $destination)
+
+    public function seatings($origin, $destination, $date)
     {
-        //$ticketId = Ticket::ticketId($origin, $destination, $selectedDate);
-        //$usedSeats = Voucher::usedSeats($ticketId);
-
-        $seats = Trip::where('origin', $origin)
+        $trip = Trip::where('origin', $origin)
         ->where('destination', $destination)
-        ->pluck('qtySeats');
-        return response()->json([
-            'seats' => $seats
-        ]);
-
+        ->first();
+        if($trip){
+            $usedSeats = Ticket::where('tripId', $trip->id)
+            ->where('date', $date)
+            ->sum('seat');
+            if(!$usedSeats){
+                $seats = $trip->qtySeats;
+                return response()->json([
+                    'seats' => $seats,
+                    'trip' => $trip,
+                ]);
+            }else{
+                $seats = $trip->qtySeats - $usedSeats;
+                return response()->json([
+                    'seats' => $seats,
+                    'trip' => $trip,
+                ]);
+            }
+        }
 
 
     }
     public function reserveIndex()
     {
-        $travels = Trip::get()->count();
 
+        try{
 
-        return view('reserve',[
+            $travels = Trip::get()->count();
+            return view('client.reserve',[
             'countTravels' => $travels,
-        ]);
+            ]);
+
+        }catch(\Exception $e){
+            return \abort(500);
+        }
+
+
     }
 }
