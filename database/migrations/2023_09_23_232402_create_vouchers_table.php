@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('uri');
             $table->timestamp('date');
-            $table->foreignId('ticket_id')->constrained('tickets');
+            $table->foreignId('ticketId')->constrained('tickets');
             $table->timestamps();
         });
 

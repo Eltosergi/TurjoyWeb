@@ -17,8 +17,7 @@ return new class extends Migration
             $table->integer('seat');
             $table->integer('total');
             $table->date('date');
-            //$table->foreignId('user_id')->constrained('users');
-            $table->foreignId('trips_id')->constrained('trips');
+            $table->foreignId('tripId')->constrained('trips');
             $table->timestamps();
         });
     }
