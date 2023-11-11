@@ -1,6 +1,7 @@
 
 const selectOrigin = document.getElementById('origins');
 const selectDestination = document.getElementById('destinations');
+
 const selectDate = document.getElementById('date');
 const selectSeat = document.getElementById('seats');
 const submitButton = document.getElementById('submit');
@@ -20,9 +21,11 @@ const seatingErrorElement2 = document.getElementById('noSeatsError');
  * Funcion que verifica la cantidad de asientos disponibles para el viaje seleccionado
  */
 
+
 const verifySeating = () => {
     const origin = selectOrigin.value;
     const destination = selectDestination.value;
+
     const date = selectDate.value;
 
     if(origin && destination && date){
@@ -39,10 +42,12 @@ const verifySeating = () => {
             }else{
             addSeatsToSelect(seating, trip);
             }
+
         })
         .catch(error => {
             console.error('Error:', error);
         });
+
     }else{
         verifySelects();
         console.log('no hay datos');
@@ -64,11 +69,13 @@ const clearSelectSeat = () => {
  *
  */
 const clearSelect = () => {
+
     while (selectDestination.firstChild) {
         selectDestination.removeChild(selectDestination.firstChild);
     };
 
 }
+
 
 /**
  * Función que agrega la cantidad de asientos disponibles para el viaje seleccionado
@@ -108,10 +115,12 @@ const addDestinationsToSelect = (destinations) => {
 }
 
 
+
 /**
  * Función que agrega los destinos disponibles para el origen seleccionado
  * @param {*} e
  */
+
 const loadedDestinations = (e) => {
 
     const currentValue = selectOrigin.value;
@@ -129,10 +138,12 @@ const loadedDestinations = (e) => {
 
 }
 
+
 /**
  *
  * @param {HTMLDivElement} origins
  */
+
 const addOriginsToSelect = (origins) => {
     origins.forEach(origin => {
         const option = document.createElement('option');
@@ -155,6 +166,7 @@ const loadedOrigins = (e) => {
         });
 
 }
+
 
 const verifySelects = () => {
     if (selectDate.value == '') {
@@ -269,6 +281,7 @@ button.addEventListener('click', (e) => {
     }
 
 });
+
 
 
 

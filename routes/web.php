@@ -6,7 +6,9 @@ use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TicketController;
+
 use App\Http\Controllers\VoucherController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,11 +26,15 @@ Route::get('/', function () {
 
 
 Route::get('login', function () {
+
     return view('admin.auth.login');
+
 })->name('login');
 
 Route::get('home', function () {
     return view('welcome');
+
+
 
 });
 

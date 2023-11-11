@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Ticket;
 use App\Models\Trip;
 use App\Models\Voucher;
@@ -39,5 +40,11 @@ class TicketController extends Controller
     }
 
 
+
+=======
+
+class TicketController extends Controller
+{
+    //
 
 }

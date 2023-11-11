@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Ticket;
 use App\Models\Voucher;
 use App\Models\Trip;
@@ -72,6 +73,8 @@ class VoucherController extends Controller
             'trip' => $trip,
         ]);
     }
+
+
 
 
 }

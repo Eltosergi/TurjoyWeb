@@ -8,7 +8,9 @@ use App\Imports\TripImport;
 use Maatwebsite\Excel\Facades\Excel;
 use app\Helpers\MyHelper;
 use App\Models\Ticket;
+
 use Illuminate\Support\Facades\DB;
+
 
 
 class TripController extends Controller
@@ -26,7 +28,9 @@ class TripController extends Controller
             session(['duplicatedRows' => []]);
         }
 
+
         return view('admin.trips.index', [
+
             'validRows' => session('validRows'),
             'invalidRows' => session('invalidRows'),
             'duplicatedRows' => session('duplicatedRows')
@@ -35,7 +39,10 @@ class TripController extends Controller
 
     public function indexTravels()
     {
+
         return view('admin.trips.index', [
+
+
             'validRows' => session('validRows'),
             'invalidRows' => session('invalidRows'),
             'duplicatedRows' => session('duplicatedRows')
@@ -135,6 +142,7 @@ class TripController extends Controller
             'destination' => $destinations,
         ]);
     }
+
     public function seatings($origin, $destination, $date)
     {
         $trip = Trip::where('origin', $origin)
@@ -159,9 +167,11 @@ class TripController extends Controller
             }
         }
 
+
     }
     public function reserveIndex()
     {
+
         try{
 
             $travels = Trip::get()->count();
@@ -172,6 +182,7 @@ class TripController extends Controller
         }catch(\Exception $e){
             return \abort(500);
         }
+
 
     }
 }

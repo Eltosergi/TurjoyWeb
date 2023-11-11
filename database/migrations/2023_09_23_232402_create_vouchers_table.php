@@ -17,6 +17,7 @@ return new class extends Migration
             $table->timestamp('date');
             $table->foreignId('ticketId')->constrained('tickets');
             $table->timestamps();
+
         });
 
     }

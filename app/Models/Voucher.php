@@ -14,6 +14,5 @@ class Voucher extends Model
         'date',
         'ticketId',
 
-
     ];
 }
