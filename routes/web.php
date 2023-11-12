@@ -31,13 +31,6 @@ Route::get('login', function () {
 
 })->name('login');
 
-Route::get('home', function () {
-    return view('welcome');
-
-
-
-});
-
 Route::post('login',[LoginController::class, 'store'])->name('login.store');
 Route::get('/logout', [LogoutController::class ,'logout'])->name('logout');
 

@@ -3,18 +3,11 @@
 Iniciar Sesión
 @endsection
 @section('content')
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
 
-    <div class="flex justify-center items-center ">
-        <div
-
-            class="w-full max-w-md h-[400px] p-8 bg-white border border-gray-custom-100 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-             <a href="{{route('welcome')}}" class="block py-2 pl-3 pr-4 text-gray-custom-50 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><span style="font-size: 24px;">&larr;</span></a>
+    <div class="flex justify-center items-center" style="margin-top: 10%">
+        <div class="w-full max-w-md h-[400px] p-8 bg-white h-auto border border-gray-custom-100 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+             <a href="{{route('welcome')}}" class="block py-2 pl-3 pr-4 text-gray-custom-50 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                <span style="font-size: 17px;">Volver</span></a>
                 <form class="space-y-4" method="POST" action="{{ route('login.store') }}" novalidate>
                 @csrf
                 <h5 class="text-xl font-medium text-gray-custom-50 dark:text-white text-center">Iniciar Sesión</h5>
@@ -30,7 +23,7 @@ Iniciar Sesión
                 </div>
                 <div>
                     <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
-                    <input type="password" name="password" id="password" placeholder="••••••••"
+                    <input type="password" name="password" id="password" placeholder="Contraseña"
                         class="bg-gray-custom-150 border border-gray-custom-100 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                         required>
                     @error('password')
