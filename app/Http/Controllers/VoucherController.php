@@ -56,10 +56,10 @@ class VoucherController extends Controller
             $domPDF->render();
 
             // Generar nombre de archivo aleatorio
-            $filename = 'user_'.Str::random(10).'.pdf';
+            $fileName = 'user_'.Str::random(10).'.pdf';
 
             // Guardar el PDF en la carpeta public
-            $path = 'pdfs\\'.$filename;
+            $path = 'pdfs\\'.$fileName;
             Storage::disk('public')->put($path, $domPDF->output());
 
             $voucher = Voucher::create([
