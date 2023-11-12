@@ -1,7 +1,4 @@
 <?php
-
-
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -19,21 +16,22 @@ class SearchController extends Controller
 
     public function search(Request $request)
     {
-        $message = makeMessages();   
+        $message = makeMessages();
         $this-> validate($request, ['code' => ['required']], $message);
 
         $code = $request -> code;
-        $ticket = Ticket::where('code', $code)->get();
-        if (!$ticket-> first()) {
+        $ticket = Ticket::where('code', $code);
+        if (!$ticket->first()) {
             return redirect()->back()->with('error', 'la reserva '.$code.' no existe en
             sistema');
         }
-        $trip = Trip::where('id',$ticket-> first() ->trips_id)->get();
-        if (!$trip-> first()) {
+        $trip = Trip::where('id',$ticket-> first() ->tripId);
+        if (!$trip->first()) {
             return redirect()->back()->with('error', 'Error del sistema, Contactese con el administrador');
         }
-        $voucher = Voucher::where('ticket_id',$ticket->first()->id)->first();
-        if (!$voucher-> first()) {
+
+        $voucher = Voucher::where('ticketId',$ticket->first()->id)->first();
+        if (!$voucher->first()) {
             return redirect()->back()->with('error', 'Error del sistema, Contactese con el administrador');
         }
         return view('client.result', [

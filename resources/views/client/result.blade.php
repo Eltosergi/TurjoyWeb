@@ -9,10 +9,10 @@
     @extends('client.ticket')
 
     @section('paragraph1')
-    
+
     @endsection
     @section('paragraph2')
-    Su reserva
+    Detalle de la reserva
     @endsection
 
 @endsection
