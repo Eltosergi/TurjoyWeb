@@ -7,6 +7,7 @@ use App\Http\Controllers\TripController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\VoucherController;
+use App\Http\Controllers\SearchController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,6 +23,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::get('search', function(){
+    return view('search');
+})->name('search');
+
 
 Route::get('login', function () {
     return view('admin.auth.login');
@@ -31,9 +36,6 @@ Route::get('home', function () {
     return view('welcome');
 
 });
-Route::get('search', function(){
-    return view('search');
-})->name('search');
 
 Route::post('login',[LoginController::class, 'store'])->name('login.store');
 Route::get('/logout', [LogoutController::class ,'logout'])->name('logout');
@@ -70,3 +72,5 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/travel-reservation/{id}', [VoucherController::class, 'generatePDF'])->name('generate.pdf');
 Route::get('download-pdf/{id}', [VoucherController::class, 'downloadPDF'])->name('pdf.download');
+
+Route::post('search/result',[SearchController::class, 'search'])->name('search.result');

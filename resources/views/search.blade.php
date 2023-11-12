@@ -19,14 +19,21 @@ Buscar reserva
                 <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                     Buscar reservas 
                 </h1>
-                <form class="space-y-4 md:space-y-6" action="#">
+                <form Method = 'POST' class="space-y-4 md:space-y-6" action="{{route('search.result')}}">
+                    @csrf
                     <div>
-                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ingrerse su reserva</label>
-                        <input class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Codigo" required="">
+                        <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ingrerse su reserva</label>
+                        <input type = 'text' name="code" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Codigo" >
+                        @error('code')
+                            <p class = "bg-red-500 text-white my-2 rounded-lg text-lg text-center p-2">{{ $message }} </p>
+                        @enderror  
+                        @if (session('error'))
+                        <p class = "bg-red-500 text-white my-2 rounded-lg text-lg text-center p-2">{{ session('error') }} </p>
+                        @endif  
                     </div>
                     
                     <button type="submit" class="w-full text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2">Buscar</button>
-
+                    
                     <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                         ¿No ha reservado? <a href="{{route('reserve')}}" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Reserve</a>
                     </p>
@@ -35,5 +42,7 @@ Buscar reserva
             </div>
         </div>
     </div>
-  </section>
-@endsection
+</section>
+
+  @endsection
+
