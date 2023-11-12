@@ -14,37 +14,34 @@ class TicketController extends Controller
 {
     public function store(Request $request){
         try{
-        $code = generateCode();
-        // Modificar request
-        $request->request->add(['code' => $code]);
 
-        // Validar
+            $code = generateCode();
+            // Modificar request
+            $request->request->add(['code' => $code]);
 
-        // Obtener viaje
-        $tripId = Trip::where('origin', $request->origin)->where('destination', $request->destination)->pluck('id')->first();
+            // Validar
 
-        // Crear la reserva
-        $ticket = Ticket::create([
-        'code' => $request->code,
-        'seat' => $request->seat,
-        'total' => $request->total,
-        'date' => $request->date,
-        'tripId' => $tripId,
-        ]);
+            // Obtener viaje
+            $tripId = Trip::where('origin', $request->origin)->where('destination', $request->destination)->pluck('id')->first();
+
+            // Crear la reserva
+            $ticket = Ticket::create([
+            'code' => $request->code,
+            'seat' => $request->seat,
+            'total' => $request->total,
+            'date' => $request->date,
+            'tripId' => $tripId,
+            ]);
 
 
-        return redirect()->route('generate.pdf', [
-            'id' => $ticket->id,
-        ]);
+            return redirect()->route('generate.pdf', [
+                'id' => $ticket->id,
+            ]);
 
         }catch(\Exception $e){
             return \abort(500);
         }
 
-
-
     }
-
-
 
 }

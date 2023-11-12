@@ -7,7 +7,7 @@
 @section('content')
 
     {{-- Detalle de la compra --}}
-    <div class="flex flex-col items-center" style="margin-top: 150px;">
+    <div class="flex flex-col items-center" style="margin-top: 150px; margin-bottom:50px">
         <div class="w-1/3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" >
             <div class="bg-blue-custom-50 p-10 rounded-t-lg" >
                 <p class="text-xl text-black text-center text-white">Tu viaje ha sido <br> <span class="font-bold text-2xl text-white">Reservado con
@@ -84,7 +84,7 @@
                                     Total pagado
                                 </th>
                                 <td class="px-6 py-4">
-                                    {{ $ticket->total }} 
+                                    {{ $ticket->total }}
                                 </td>
                             </tr>
                         </tbody>
@@ -104,7 +104,7 @@
             </div>
             <div class="flex items-center justify-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600" style="background-color:#0A74DA">
 
-                <a href="{{ route('welcome') }}" type="button"
+                <a href="{{ route('welcome') }}" type="button" hidden
                     class="text-white w-4 bg-red-custom hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lm py-3 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 ">
                     Finalizar
                 </a>

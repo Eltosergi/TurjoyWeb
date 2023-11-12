@@ -8,7 +8,7 @@
 
     @if ($countTravels > 0)
 
-    <!--Formulario de reserva (alinear boxes (selects e inputs) - Flowbite)-->
+
     <section id="section" class="bg-gray-50 dark:bg-gray-900">
         <div id="principal" class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
             <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
@@ -21,7 +21,7 @@
           <h1 class="text-xl font-bold leading-tight tracking-tight md:text-2xl">
               Reserva de Pasajes Turjoy
           </h1>
-          <!-- Otros elementos del formulario -->
+
       </div>
 
                     <form id="form" class="space-y-4 md:space-y-6" action="{{ route('ticket.store') }}" method="POST" >
