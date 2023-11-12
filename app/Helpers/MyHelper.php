@@ -19,6 +19,7 @@ function makeMessages()
         'origins.required' => 'el campo origen es requerido.',
         'destinations.required' => 'el campo destino es requerido.',
         'seats.required' => 'el campo asientos es requerido.',
+        'code.required'=> 'debe proporcionar un código de reserva'
 
     ];
 

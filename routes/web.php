@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TicketController;
 
 use App\Http\Controllers\VoucherController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,10 @@ use App\Http\Controllers\VoucherController;
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
+
+Route::get('search', function(){
+    return view('search');
+})->name('search');
 
 
 Route::get('login', function () {
@@ -66,3 +71,5 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/travel-reservation/{id}', [VoucherController::class, 'generatePDF'])->name('generate.pdf');
 Route::get('download-pdf/{id}', [VoucherController::class, 'downloadPDF'])->name('pdf.download');
+
+Route::post('search/result',[SearchController::class, 'search'])->name('search.result');
