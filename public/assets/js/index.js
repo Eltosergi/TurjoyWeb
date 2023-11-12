@@ -1,7 +1,7 @@
 
 const selectOrigin = document.getElementById('origins');
 const selectDestination = document.getElementById('destinations');
-
+var dateSave = '';
 const selectDate = document.getElementById('date');
 const selectSeat = document.getElementById('seats');
 const submitButton = document.getElementById('submit');
@@ -25,7 +25,6 @@ const seatingErrorElement2 = document.getElementById('noSeatsError');
 const verifySeating = () => {
     const origin = selectOrigin.value;
     const destination = selectDestination.value;
-
     const date = selectDate.value;
 
     if(origin && destination && date){
@@ -49,7 +48,9 @@ const verifySeating = () => {
         });
 
     }else{
-        verifySelects();
+        dateErrorElement2.style.display = 'block';
+        selectOrigin.value = '';
+        selectDestination.value = '';
         console.log('no hay datos');
     }
 
@@ -223,23 +224,45 @@ const verifyDate = () => {
     } else {
         // La fecha seleccionada es válida
         dateErrorElement.style.display = 'none';
+        dateSave = selectedDate;
+
     }
 
 
 }
 
+const dateChange = (dateChanged) => {
+
+    if (dateChanged != dateSave) {
+        selectDate.value = "";
+        selectDestination.value = "";
+        selectOrigin.value = "";
+        seatingElement.value = "";
+        return false
+
+    }else{
+        return true
+    }
+}
+const emptySelects = ()=>{
+    console.log('entro')
+    selectDestination.value = "";
+    selectOrigin.value = "";
+    seatingElement.value = "";
 
 
+}
 
 document.addEventListener('DOMContentLoaded', loadedOrigins );
 selectDate.addEventListener('change', verifyDate);
+selectDate.addEventListener('change', emptySelects);
 selectOrigin.addEventListener('change', loadedDestinations );
-selectDestination.addEventListener('change', verifySeating );
+selectDestination.addEventListener('change', verifySeating);
 const button = document.getElementById("acceptButton");
 
 
 button.addEventListener('click', (e) => {
-    verifySelects();
+
     const selectedOrigin = document.getElementById('origins').value;
     const selectedDestination = document.getElementById('destinations').value;
     const selectedDate = document.getElementById('date').value;
@@ -247,23 +270,21 @@ button.addEventListener('click', (e) => {
     const basePrice = document.getElementById('basePrice');
     const total = document.getElementById('basePrice').value * selectedseats;
     basePrice.value = total;
-
-    console.log(selectedOrigin);
-    console.log(selectedDestination);
-    console.log(selectedDate);
-    console.log(selectedseats);
-    console.log(total);
-
-
-
+    console.log(selectedDate+"despues")
     e.preventDefault();
-
+    if (dateChange(selectedDate) == false) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'La fecha seleccionada no es válida',
+            confirmButtonColor: '#2ECC71',
+        })
+    }
     if (selectedOrigin && selectedDestination && selectedDate  && selectedseats && basePrice) {
 
         Swal.fire({
             title: '¿Estas seguro de realizar la reserva?',
             text: `El total de la reserva entre ${selectedOrigin} y ${selectedDestination} para el día ${selectedDate} es de $${total} (${selectedseats} asientos) . ¿Desea continuar?`,
-            icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#2ECC71',
             cancelButtonColor: '#FF6B6B',
@@ -275,6 +296,9 @@ button.addEventListener('click', (e) => {
 
             }
         });
+    }else{
+        verifySelects();
+        console.log('no hay datos');
     }
 
 });

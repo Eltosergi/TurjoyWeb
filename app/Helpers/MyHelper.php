@@ -41,9 +41,19 @@ function generateCode(){
         $alfa = Str::random(4);
         $numeric = mt_rand(10, 99);
 
-        $code = $alfa.$numeric;
 
+        while (true) {
+
+            if (preg_match('/^[a-zA-Z]{4}$/', $alfa)) {
+                break;
+            } else {
+                $alfa = Str::random(4);
+            }
+        }
+        $code = $alfa.$numeric;
         $request = Ticket::where('code', $code)->first();
+
+
 
     }while($request);
     return $code;
