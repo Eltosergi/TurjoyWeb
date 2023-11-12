@@ -83,6 +83,10 @@ final class Generator
         '__clone'         => true,
         '__halt_compiler' => true,
     ];
+
+    /**
+     * @psalm-var array<non-empty-string, MockClass>
+     */
     private static array $cache = [];
 
     /**
@@ -391,6 +395,7 @@ final class Generator
 
         $key = md5(
             $type .
+            ($mockObject ? 'MockObject' : 'TestStub') .
             serialize($methods) .
             serialize($callOriginalClone) .
             serialize($cloneArguments) .

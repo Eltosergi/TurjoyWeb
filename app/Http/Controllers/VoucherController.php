@@ -2,64 +2,85 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\Ticket;
 use App\Models\Voucher;
-use Illuminate\Http\Request;
+use App\Models\Trip;
+use Dompdf\Dompdf;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 
 class VoucherController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function downloadPDF($id)
     {
-        //
+            // Obtener la información del PDF desde la base de datos
+            $pdf = Voucher::findOrFail($id);
+
+            // Obtener la ruta del archivo PDF
+            $path = storage_path('app\public\\'.$pdf->uri);
+
+            // Obtener el nombre original del archivo
+            $filename = $pdf->pdf_name;
+
+            // Obtener el tipo MIME del archivo PDF
+            $mimeType = Storage::mimeType($path);
+
+            // Devolver el archivo PDF como una descarga
+            return response()->download($path, $filename, ['Content-Type' => $mimeType]);
+
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function generatePDF($idTicket)
     {
-        //
+
+            $ticket = Ticket::findOrFail($idTicket);
+
+            // Crear una instacia de Dompdf
+            $domPDF = new Dompdf();
+            $trip = Trip::findOrFail($ticket->tripId);
+
+
+            $view_html = view('client.voucher', [
+                'ticket' => $ticket,
+                'date' => date('d-m-Y'),
+                'trip' => $trip,
+            ])->render();
+
+            $domPDF->loadHtml($view_html);
+
+            $domPDF->setPaper('A4', 'portrait');
+
+            $domPDF->render();
+
+            // Generar nombre de archivo aleatorio
+            $filename = 'user_'.Str::random(10).'.pdf';
+
+            // Guardar el PDF en la carpeta public
+            $path = 'pdfs\\'.$filename;
+            Storage::disk('public')->put($path, $domPDF->output());
+
+            $voucher = Voucher::create([
+                'uri' => $path,
+                'date' => date('Y-m-d'),
+                'ticketId' => $idTicket
+            ]);
+
+
+
+
+            return view('client.reserveSuccess', [
+                'ticket' => $ticket,
+                'voucher' => $voucher,
+                'trip' => $trip,
+            ]);
+
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Voucher $voucher)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Voucher $voucher)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Voucher $voucher)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Voucher $voucher)
-    {
-        //
-    }
 }

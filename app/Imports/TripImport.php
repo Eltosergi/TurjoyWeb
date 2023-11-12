@@ -25,8 +25,7 @@ class TripImport implements ToCollection, WithHeadingRow
      * @param Collection $rows
      */
     public function collection(Collection $rows)
-    {
-        
+    {        
         foreach ($rows as $row) {
             try{
                 $origin = $row[self::ORIGIN_COLUMN];
