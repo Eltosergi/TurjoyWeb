@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 use App\Models\Ticket;
 use App\Models\Voucher;
@@ -16,29 +17,42 @@ class SearchController extends Controller
 
     public function search(Request $request)
     {
-        $message = makeMessages();
-        $this-> validate($request, ['code' => ['required']], $message);
+        try {
+            $message = makeMessages();
+            $this->validate($request, ['code' => ['required']], $message);
 
-        $code = $request -> code;
-        $ticket = Ticket::where('code', $code);
-        if (!$ticket->first()) {
-            return redirect()->back()->with('error', 'la reserva '.$code.' no existe en
-            sistema');
-        }
-        $trip = Trip::where('id',$ticket-> first() ->tripId);
-        if (!$trip->first()) {
-            return redirect()->back()->with('error', 'Error del sistema, Contactese con el administrador');
-        }
+            $code = $request->code;
+            $ticket = Ticket::where('code', $code);
 
-        $voucher = Voucher::where('ticketId',$ticket->first()->id)->first();
-        if (!$voucher->first()) {
-            return redirect()->back()->with('error', 'Error del sistema, Contactese con el administrador');
+            if (!$ticket->first()) {
+                return redirect()->back()->with('error', 'La reserva ' . $code . ' no existe en el sistema');
+            }
+
+            $trip = Trip::where('id', $ticket->first()->tripId);
+
+            if (!$trip->first()) {
+                return redirect()->back()->with('error', 'Error del sistema, contactese con el administrador');
+            }
+
+            $voucher = Voucher::where('ticketId', $ticket->first()->id)->first();
+
+            if (!$voucher) {
+                return redirect()->back()->with('error', 'Error del sistema, contactese con el administrador');
+            }
+
+            return view('client.result', [
+                'ticket' => $ticket->first(),
+                'voucher' => $voucher,
+                'trip' => $trip->first(),
+            ]);
+        } catch (QueryException $e) {
+            // Manejar la excepción de la base de datos aquí
+            return redirect()->back()->with('error', 'Error del sistema, contactese con el administrador ' . $e->getMessage());
+        } catch (\Exception $e) {
+            // Manejar otras excepciones aquí
+            return redirect()->back()->with('error', 'Error del sistema, contactese con el administrador ' . $e->getMessage());
         }
-        return view('client.result', [
-           'ticket' => $ticket-> first(),
-           'voucher' => $voucher-> first(),
-           'trip' => $trip-> first(),
-        ]);
     }
+
 
 }
