@@ -34,7 +34,7 @@ const verifySeating = () => {
         .then(data => {
             const seating = data.seats;
             const trip = data.trip;
-            if(seating == 0){
+            if(seating <= 0){
                 seatingErrorElement2.style.display = 'block';
                 selectOrigin.value = '';
                 selectDestination.value = '';
@@ -98,7 +98,6 @@ const addSeatsToSelect = (seat, trip) => {
  */
 const addDestinationsToSelect = (destinations) => {
     clearSelect();
-
     const option = document.createElement('option');
     option.value = '';
     option.text = 'Seleccione un destino';
@@ -245,8 +244,6 @@ button.addEventListener('click', (e) => {
     const selectedDestination = document.getElementById('destinations').value;
     const selectedDate = document.getElementById('date').value;
     const selectedseats = document.getElementById('seats').value;
-    const date = new Date(selectedDate);
-    const dateFormatted = date.toLocaleDateString('es-ES', selectedDate )
     const basePrice = document.getElementById('basePrice');
     const total = document.getElementById('basePrice').value * selectedseats;
     basePrice.value = total;
@@ -265,7 +262,7 @@ button.addEventListener('click', (e) => {
 
         Swal.fire({
             title: '¿Estas seguro de realizar la reserva?',
-            text: `El total de la reserva entre ${selectedOrigin} y ${selectedDestination} para el día ${dateFormatted} es de $${total} (${selectedseats} asientos) . ¿Desea continuar?`,
+            text: `El total de la reserva entre ${selectedOrigin} y ${selectedDestination} para el día ${selectedDate} es de $${total} (${selectedseats} asientos) . ¿Desea continuar?`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#2ECC71',

@@ -15,7 +15,6 @@ class VoucherController extends Controller
 {
     public function downloadPDF($id)
     {
-        try{
             // Obtener la información del PDF desde la base de datos
             $pdf = Voucher::findOrFail($id);
 
@@ -30,46 +29,45 @@ class VoucherController extends Controller
 
             // Devolver el archivo PDF como una descarga
             return response()->download($path, $filename, ['Content-Type' => $mimeType]);
-        }catch(\Exception $e){
-            return \abort(500);
-        }
+
 
     }
 
     public function generatePDF($idTicket)
     {
-        try{
+
             $ticket = Ticket::findOrFail($idTicket);
 
             // Crear una instacia de Dompdf
-            //$domPDF = new Dompdf();
+            $domPDF = new Dompdf();
+            $trip = Trip::findOrFail($ticket->tripId);
 
-            $data = [
+
+            $view_html = view('client.voucher', [
                 'ticket' => $ticket,
                 'date' => date('d-m-Y'),
-            ];
+                'trip' => $trip,
+            ])->render();
 
-        // $view_html = view('voucher.pdf', $data)->render();
+            $domPDF->loadHtml($view_html);
 
-            //$domPDF->loadHtml($view_html);
+            $domPDF->setPaper('A4', 'portrait');
 
-            //$domPDF->setPaper('A4', 'portrait');
-
-        // $domPDF->render();
+            $domPDF->render();
 
             // Generar nombre de archivo aleatorio
-            //$filename = 'user_'.Str::random(10).'.pdf';
+            $filename = 'user_'.Str::random(10).'.pdf';
 
             // Guardar el PDF en la carpeta public
-            //$path = 'pdfs\\'.$filename;
-            //Storage::disk('public')->put($path, $domPDF->output());
+            $path = 'pdfs\\'.$filename;
+            Storage::disk('public')->put($path, $domPDF->output());
 
             $voucher = Voucher::create([
-                'uri' => 'test',
+                'uri' => $path,
                 'date' => date('Y-m-d'),
                 'ticketId' => $idTicket
             ]);
-            $trip = Trip::findOrFail($ticket->tripId);
+
 
 
 
@@ -78,9 +76,7 @@ class VoucherController extends Controller
                 'voucher' => $voucher,
                 'trip' => $trip,
             ]);
-        }catch(\Exception $e){
-            return \abort(500);
-        }
+
 
     }
 
