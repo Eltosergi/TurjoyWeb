@@ -6,6 +6,7 @@
 
 @section('content')
 
+
     {{-- Detalle de la compra --}}
     <div class="flex flex-col items-center" style="margin-top: 150px; margin-bottom:50px">
         <div class="w-1/3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" >
@@ -111,5 +112,6 @@
             </div>
         </div>
     </div>
+
 
 @endsection

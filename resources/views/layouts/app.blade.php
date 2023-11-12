@@ -25,6 +25,7 @@
                 </a>
                 </div>
     @auth
+                 {{-- SideBar de Admin --}}
                 <!-- Profile Foto (Sacar?) -->
                 <div class="flex items-center">
                     <div class="flex items-center ml-3 text-white text-xl">
@@ -71,6 +72,18 @@
                                 </a>
                             </li>
 
+                            <li>
+                                <a href="{{route('search')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 513.749 513.749" style="enable-background:new 0 0 513.749 513.749;" xml:space="preserve" width="16" height="16" fill="currentColor">
+                                        <g>
+                                            <path d="M504.352,459.061l-99.435-99.477c74.402-99.427,54.115-240.344-45.312-314.746S119.261-9.277,44.859,90.15   S-9.256,330.494,90.171,404.896c79.868,59.766,189.565,59.766,269.434,0l99.477,99.477c12.501,12.501,32.769,12.501,45.269,0   c12.501-12.501,12.501-32.769,0-45.269L504.352,459.061z M225.717,385.696c-88.366,0-160-71.634-160-160s71.634-160,160-160   s160,71.634,160,160C385.623,314.022,314.044,385.602,225.717,385.696z"/>
+                                        </g>
+                                    </svg>
+                                    
+                                <span class="flex-1 ml-3 whitespace-nowrap">Buscar reservas</span>
+                                </a>
+                            </li>
+
 
                         </ul>
                     </div>
@@ -82,8 +95,8 @@
     </nav>
     @guest
 
-
-
+    {{-- SideBar de Usuario --}}
+    
     <!-- drawer component -->
     <div id="drawer-navigation" class="fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-navigation-label">
         <h5 id="drawer-navigation-label" class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">Menu</h5>
@@ -126,33 +139,30 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="{{route('search')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 513.749 513.749" style="enable-background:new 0 0 513.749 513.749;" xml:space="preserve" width="16" height="16" fill="currentColor">
+                            <g>
+                                <path d="M504.352,459.061l-99.435-99.477c74.402-99.427,54.115-240.344-45.312-314.746S119.261-9.277,44.859,90.15   S-9.256,330.494,90.171,404.896c79.868,59.766,189.565,59.766,269.434,0l99.477,99.477c12.501,12.501,32.769,12.501,45.269,0   c12.501-12.501,12.501-32.769,0-45.269L504.352,459.061z M225.717,385.696c-88.366,0-160-71.634-160-160s71.634-160,160-160   s160,71.634,160,160C385.623,314.022,314.044,385.602,225.717,385.696z"/>
+                            </g>
+                        </svg>
+                        
+                    <span class="flex-1 ml-3 whitespace-nowrap">Buscar reservas</span>
+                    </a>
+                </li>
+
 
         </ul>
 
         </div>
     </div>
-
-
         @endguest
-
-
-
-
-
     <main>
-
         @yield('content')
     </main>
 </body>
 
-
-
-
-
 <script src="{{asset('assets/js/index.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
-
 
 </html>
