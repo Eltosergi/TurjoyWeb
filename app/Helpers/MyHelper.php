@@ -1,8 +1,10 @@
 <?php
 
+
 use Carbon\Carbon;
 use App\Models\Ticket;
 use Illuminate\Support\Str;
+
 
 function makeMessages()
 {
@@ -11,6 +13,7 @@ function makeMessages()
         'password.required' => 'debe ingresar su contraseña para iniciar sesión',
         'document.required' => 'el campo archivo es requerido.',
         'document.mimes' => 'el archivo seleccionado no es Excel con extensión .xlsx.',
+
         'document.max' => 'el tamaño máximo del archivo a cargar no puede superar los 5 megabytes',
         'date.required' => 'el campo fecha es requerido.',
         'origins.required' => 'el campo origen es requerido.',
@@ -22,6 +25,7 @@ function makeMessages()
 
     return $messages;
 }
+
 function verifyDate($date)
 {
     $currentDate = date('Y-m-d');
@@ -44,3 +48,4 @@ function generateCode(){
     }while($request);
     return $code;
 }
+

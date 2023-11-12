@@ -4,24 +4,17 @@
 
 
 
+
 .bg-red-custom {
     width: 100%;
 
 }
 
 
+#section{
+    margin-top: 100px;
+    margin-bottom: 50px;
 
-#form{
-    display: flex;
-    justify-content: center;
-    margin-top: 10%;
-    height: 600px;
-    width: 600px;
-    background-color: #0A74DA;
-    position: absolute;
-    top: 250px;
-    left: 50%;
-    transform: translate(-49%, -49%)
 }
 
 label{
@@ -29,6 +22,8 @@ label{
 }
 
 #acceptButton{
+
+    margin-top: 10px;
 
     background-color: #2ECC71;
 }
@@ -44,6 +39,7 @@ label{
     margin-top: 15%;
     top: 15%
 }
+
 #select{
     width: auto;
 
@@ -51,3 +47,26 @@ label{
 #destinantionError{
     background-color: #FF6B6B;
 }
+
+div.center {
+    text-align: center;
+  }
+
+#noRoutesAlert{
+    margin-top: 5%;
+    margin-bottom: 10%;
+    text-align: center;
+    height: 50px;
+    width: 100px;
+}
+
+#principal{
+    height: auto;
+    width: auto;
+    margin-bottom: 10px;
+}
+form{
+    height: auto;
+}
+
+

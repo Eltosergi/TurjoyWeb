@@ -1,6 +1,7 @@
 
 const selectOrigin = document.getElementById('origins');
 const selectDestination = document.getElementById('destinations');
+
 const selectDate = document.getElementById('date');
 const selectSeat = document.getElementById('seats');
 const submitButton = document.getElementById('submit');
@@ -20,9 +21,11 @@ const seatingErrorElement2 = document.getElementById('noSeatsError');
  * Funcion que verifica la cantidad de asientos disponibles para el viaje seleccionado
  */
 
+
 const verifySeating = () => {
     const origin = selectOrigin.value;
     const destination = selectDestination.value;
+
     const date = selectDate.value;
 
     if(origin && destination && date){
@@ -31,7 +34,7 @@ const verifySeating = () => {
         .then(data => {
             const seating = data.seats;
             const trip = data.trip;
-            if(seating == 0){
+            if(seating <= 0){
                 seatingErrorElement2.style.display = 'block';
                 selectOrigin.value = '';
                 selectDestination.value = '';
@@ -39,10 +42,12 @@ const verifySeating = () => {
             }else{
             addSeatsToSelect(seating, trip);
             }
+
         })
         .catch(error => {
             console.error('Error:', error);
         });
+
     }else{
         verifySelects();
         console.log('no hay datos');
@@ -64,11 +69,13 @@ const clearSelectSeat = () => {
  *
  */
 const clearSelect = () => {
+
     while (selectDestination.firstChild) {
         selectDestination.removeChild(selectDestination.firstChild);
     };
 
 }
+
 
 /**
  * Función que agrega la cantidad de asientos disponibles para el viaje seleccionado
@@ -91,7 +98,6 @@ const addSeatsToSelect = (seat, trip) => {
  */
 const addDestinationsToSelect = (destinations) => {
     clearSelect();
-
     const option = document.createElement('option');
     option.value = '';
     option.text = 'Seleccione un destino';
@@ -108,10 +114,12 @@ const addDestinationsToSelect = (destinations) => {
 }
 
 
+
 /**
  * Función que agrega los destinos disponibles para el origen seleccionado
  * @param {*} e
  */
+
 const loadedDestinations = (e) => {
 
     const currentValue = selectOrigin.value;
@@ -129,10 +137,12 @@ const loadedDestinations = (e) => {
 
 }
 
+
 /**
  *
  * @param {HTMLDivElement} origins
  */
+
 const addOriginsToSelect = (origins) => {
     origins.forEach(origin => {
         const option = document.createElement('option');
@@ -155,6 +165,7 @@ const loadedOrigins = (e) => {
         });
 
 }
+
 
 const verifySelects = () => {
     if (selectDate.value == '') {
@@ -233,8 +244,6 @@ button.addEventListener('click', (e) => {
     const selectedDestination = document.getElementById('destinations').value;
     const selectedDate = document.getElementById('date').value;
     const selectedseats = document.getElementById('seats').value;
-    const date = new Date(selectedDate);
-    const dateFormatted = date.toLocaleDateString('es-ES', selectedDate )
     const basePrice = document.getElementById('basePrice');
     const total = document.getElementById('basePrice').value * selectedseats;
     basePrice.value = total;
@@ -253,11 +262,11 @@ button.addEventListener('click', (e) => {
 
         Swal.fire({
             title: '¿Estas seguro de realizar la reserva?',
-            text: `El total de la reserva entre ${selectedOrigin} y ${selectedDestination} para el día ${dateFormatted} es de $${total} (${selectedseats} asientos) . ¿Desea continuar?`,
+            text: `El total de la reserva entre ${selectedOrigin} y ${selectedDestination} para el día ${selectedDate} es de $${total} (${selectedseats} asientos) . ¿Desea continuar?`,
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#2ECC71',
+            cancelButtonColor: '#FF6B6B',
             confirmButtonText: 'Confirmar',
             cancelButtonText: 'Volver'
         }).then((result) => {
@@ -269,6 +278,5 @@ button.addEventListener('click', (e) => {
     }
 
 });
-
 
 
