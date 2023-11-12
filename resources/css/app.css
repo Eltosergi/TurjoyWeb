@@ -52,3 +52,21 @@ div.center {
     text-align: center;
   }
 
+#noRoutesAlert{
+    margin-top: 5%;
+    margin-bottom: 10%;
+    text-align: center;
+    height: 50px;
+    width: 100px;
+}
+
+#principal{
+    height: auto;
+    width: auto;
+    margin-bottom: 10px;
+}
+form{
+    height: auto;
+}
+
+

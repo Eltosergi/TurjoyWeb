@@ -119,53 +119,75 @@ class TripController extends Controller
 
     public function getOrigins()
     {
-        $origins = Trip::distinct()->orderBy('origin','asc')->pluck('origin');
+        try{
+            $origins = Trip::distinct()->orderBy('origin','asc')->pluck('origin');
 
-        return response()->json([
-            'origins' => $origins,
-        ]);
+            return response()->json([
+                'origins' => $origins,
+            ]);
+        }catch(\Exception $e){
+            return \abort(500);
+        }
+
     }
 
     public function getDestinations()
     {
-        $destinations = Trip::distinct()->orderBy('destination','asc')->pluck('destination');
+        try{
+            $destinations = Trip::distinct()->orderBy('destination','asc')->pluck('destination');
 
-        return response()->json([
-            'destinations' => $destinations,
-        ]);
+            return response()->json([
+                'destinations' => $destinations,
+            ]);
+        }catch(\Exception $e){
+            return \abort(500);
+        }
+
     }
     public function searchDestinations($origin)
     {
-        $destinations = Trip::where('origin', $origin)->orderBy('destination','asc')->pluck('destination');
+        try{
+            $destinations = Trip::where('origin', $origin)->orderBy('destination','asc')->pluck('destination');
 
-        return response()->json([
-            'destination' => $destinations,
-        ]);
+            return response()->json([
+                'destination' => $destinations,
+            ]);
+
+        }catch(\Exception $e){
+            return \abort(500);
+        }
+
     }
 
     public function seatings($origin, $destination, $date)
     {
-        $trip = Trip::where('origin', $origin)
-        ->where('destination', $destination)
-        ->first();
-        if($trip){
-            $usedSeats = Ticket::where('tripId', $trip->id)
-            ->where('date', $date)
-            ->sum('seat');
-            if(!$usedSeats){
-                $seats = $trip->qtySeats;
-                return response()->json([
-                    'seats' => $seats,
-                    'trip' => $trip,
-                ]);
-            }else{
-                $seats = $trip->qtySeats - $usedSeats;
-                return response()->json([
-                    'seats' => $seats,
-                    'trip' => $trip,
-                ]);
+        try{
+            $trip = Trip::where('origin', $origin)
+            ->where('destination', $destination)
+            ->first();
+            if($trip){
+                $usedSeats = Ticket::where('tripId', $trip->id)
+                ->where('date', $date)
+                ->sum('seat');
+                if(!$usedSeats){
+                    $seats = $trip->qtySeats;
+                    return response()->json([
+                        'seats' => $seats,
+                        'trip' => $trip,
+                    ]);
+                }else{
+                    $seats = $trip->qtySeats - $usedSeats;
+                    return response()->json([
+                        'seats' => $seats,
+                        'trip' => $trip,
+                    ]);
+                }
             }
+
+        }catch(\Exception $e){
+            return \abort(500);
         }
+
 
 
     }

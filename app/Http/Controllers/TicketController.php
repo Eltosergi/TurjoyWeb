@@ -13,7 +13,7 @@ use App\Http\Controllers\VoucherController;
 class TicketController extends Controller
 {
     public function store(Request $request){
-
+        try{
         $code = generateCode();
         // Modificar request
         $request->request->add(['code' => $code]);
@@ -36,6 +36,12 @@ class TicketController extends Controller
         return redirect()->route('generate.pdf', [
             'id' => $ticket->id,
         ]);
+
+        }catch(\Exception $e){
+            return \abort(500);
+        }
+
+
 
     }
 

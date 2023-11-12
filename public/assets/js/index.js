@@ -268,8 +268,8 @@ button.addEventListener('click', (e) => {
             text: `El total de la reserva entre ${selectedOrigin} y ${selectedDestination} para el día ${dateFormatted} es de $${total} (${selectedseats} asientos) . ¿Desea continuar?`,
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#2ECC71',
+            cancelButtonColor: '#FF6B6B',
             confirmButtonText: 'Confirmar',
             cancelButtonText: 'Volver'
         }).then((result) => {
