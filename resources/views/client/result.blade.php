@@ -84,7 +84,7 @@
                                     Total pagado
                                 </th>
                                 <td class="px-6 py-4">
-                                    {{ $ticket->total }}
+                                    ${{ number_format($ticket->total,0,',','.') }}
                                 </td>
                             </tr>
                         </tbody>
