@@ -143,7 +143,7 @@
     @else
         <div class="flex flex-col flex-1 justify-center items-center my-6">
             <div class="mt-16 mb-12 mx-auto">
-                <a class="px-6 py-3 bg-green-custom hover:bg-red-700 transition-all text-black font-semibold rounded-lg"
+                <a class="px-6 py-3 bg-green-custom hover:bg-red-700 transition-all text-white font-semibold rounded-lg"
                     href="{{ route('welcome') }}">Volver a menú administrador</a>
             </div>
             <form class="flex flex-col items-center w-1/2" action="{{route('travel.check')}}" method="POST"

@@ -105,7 +105,7 @@
             </div>
             <div class="flex items-center justify-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600" style="background-color:#0A74DA">
 
-                <a href="{{ route('welcome') }}" type="button" hidden
+                <a href="{{ route('welcome') }}" type="button" 
                     class="text-white w-4 bg-red-custom hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lm py-3 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 ">
                     Finalizar
                 </a>

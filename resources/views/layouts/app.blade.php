@@ -24,6 +24,8 @@
                     <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-white">Turjoy</span>
                 </a>
                 </div>
+
+            
     @auth
                  {{-- SideBar de Admin --}}
                 <!-- Profile Foto (Sacar?) -->
@@ -150,12 +152,10 @@
                     <span class="flex-1 ml-3 whitespace-nowrap">Buscar reservas</span>
                     </a>
                 </li>
-
-
-        </ul>
-
+             </ul>
         </div>
     </div>
+
         @endguest
     <main>
         @yield('content')
