@@ -10,7 +10,7 @@ use App\Models\Trip;
 use App\Models\Voucher;
 use App\Http\Controllers\SearchController;
 
-class searchReserveTest extends TestCase
+class SearchTicketTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -24,7 +24,7 @@ class searchReserveTest extends TestCase
         'price' => '1000',
     ]);
     $ticket = Ticket::create([
-        'code' => 'ABC123', 
+        'code' => 'ABC123',
         'tripId' => $trip->id,
         'seat' => '2',
         'total'=>'2000',
@@ -47,6 +47,6 @@ class searchReserveTest extends TestCase
     $response->assertViewHas('voucher', $voucher);
 }
 
-    
+
 
 }
