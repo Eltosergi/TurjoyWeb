@@ -12,7 +12,8 @@ class LoginController extends Controller
 
     public function store(Request $request)
     {
-        $messages = makeMessages();
+        try{
+            $messages = makeMessages();
         $this->validate($request, [
             'email'=> ['required'],
             'password' => ['required']
@@ -27,5 +28,10 @@ class LoginController extends Controller
         }
         //Ingresar ruta del cargar viajes
         return redirect()->route('welcome');
+
+        }catch(\Exception $e){
+            return redirect()->route('error');
+        }
+
     }
 }
