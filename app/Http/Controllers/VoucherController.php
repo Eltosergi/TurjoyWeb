@@ -15,6 +15,7 @@ class VoucherController extends Controller
 {
     public function downloadPDF($id)
     {
+        try{
             // Obtener la información del PDF desde la base de datos
             $pdf = Voucher::findOrFail($id);
 
@@ -30,12 +31,17 @@ class VoucherController extends Controller
             // Devolver el archivo PDF como una descarga
             return response()->download($path, $filename, ['Content-Type' => $mimeType]);
 
+        }catch(\Exception $e){
+            return redirect()->route('error');
+        }
+
+
 
     }
 
     public function generatePDF($idTicket)
     {
-
+        try{
             $ticket = Ticket::findOrFail($idTicket);
 
             // Crear una instacia de Dompdf
@@ -77,8 +83,14 @@ class VoucherController extends Controller
                 'trip' => $trip,
             ]);
 
+        }catch(\Exception $e){
+            return redirect()->route('error');
 
+
+
+        }
     }
+
 
 
 

@@ -64,12 +64,14 @@
                             <p id="noSeatsError" class="bg-red-custom text-white my-2 rounded-lg text-lg text-center -p-2" style="display:none ">no hay servicios disponibles para la ruta seleccionada</p>
                         </div>
 
-                        <input type="number" id="basePrice" name="total" value=" " hidden>
+                        <input type="number" id="total" name="total" value=" " hidden>
                         <div class="center">
                             <button id="acceptButton" type="button" class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800" >Reservar</button>
                         </div>
 
                     </form>
+                    <input type="number" id="basePrice" value=" " hidden>
+
                 </div>
             </div>
         </div>

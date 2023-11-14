@@ -47,10 +47,10 @@ class SearchController extends Controller
             ]);
         } catch (QueryException $e) {
             // Manejar la excepción de la base de datos aquí
-            return redirect()->back()->with('error', $e->getMessage());
+            return redirect()->route('error');
         } catch (\Exception $e) {
             // Manejar otras excepciones aquí
-            return redirect()->back()->with('error', $e->getMessage());
+            return redirect()->route('error');
         }
     }
 

@@ -40,7 +40,8 @@ class TicketController extends Controller
             ]);
 
         }catch(\Exception $e){
-            return \abort(500);
+
+            return redirect()->route('error');
         }
 
     }

@@ -25,6 +25,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::get('/home', function () {
+    return view('welcome');
+});
+
 Route::get('search', function(){
     return view('search');
 })->name('search');
@@ -50,9 +54,12 @@ Route::post('/check',[TripController::class, 'checkTravel']);
 
 // ERROR: GET method not supported for this route. Supported methods: POST.
 
+Route::middleware(['guest'])->group(function () {
+    Route::get('reserve', [TripController::class, 'reserveIndex'])->name('reserve');
+    Route::post('reserve', [TicketController::class, 'store'])->name('ticket.store');
 
-Route::get('reserva', [TripController::class, 'reserveIndex'])->name('reserve');
-Route::post('reserva', [TicketController::class, 'store'])->name('ticket.store');
+});
+
 
 
 // PREGUNTAR CLIENTE: ¿solo los invitados (usuarios) pueden acceder al reservar?
@@ -62,7 +69,7 @@ Route::post('reserva', [TicketController::class, 'store'])->name('ticket.store')
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/cargarviajes', [UserController::class, 'dashboardIndex'])->name('index');
+    Route::get('/upload', [UserController::class, 'dashboardIndex'])->name('index');
     Route::get('/add/travel', [TripController::class, 'indexAddTravels'])->name('travels.index');
     Route::post('/addtravel', [TripController::class, 'travelCheck'])->name('travel.check');
     Route::get('/result/travels', [TripController::class, 'indexTravels'])->name('travelsAdd.index');
@@ -73,3 +80,8 @@ Route::get('/travel-reservation/{id}', [VoucherController::class, 'generatePDF']
 Route::get('download-pdf/{id}', [VoucherController::class, 'downloadPDF'])->name('pdf.download');
 
 Route::post('search/result',[SearchController::class, 'search'])->name('search.result');
+
+
+Route::get('/unexpected', function () {
+    return view('unexpected');
+})->name('error');

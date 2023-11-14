@@ -60,7 +60,7 @@ class TripController extends Controller
         //Validar el archivo excel en detalle
         if ($request->hasFile('document')) {
             $file = request()->file('document');
-            
+
             $import = new TripImport();
             Excel::import($import, $file);
             if(!$import->getValidRows() && !$import->getInvalidRows() && !$import->getDuplicatedRows()){
@@ -132,7 +132,7 @@ class TripController extends Controller
                 'origins' => $origins,
             ]);
         }catch(\Exception $e){
-            return \abort(500);
+            return redirect()->route('error');
         }
 
     }
@@ -146,7 +146,7 @@ class TripController extends Controller
                 'destinations' => $destinations,
             ]);
         }catch(\Exception $e){
-            return \abort(500);
+            return redirect()->route('error');
         }
 
     }
@@ -160,7 +160,7 @@ class TripController extends Controller
             ]);
 
         }catch(\Exception $e){
-            return \abort(500);
+            return redirect()->route('error');
         }
 
     }
@@ -191,7 +191,7 @@ class TripController extends Controller
             }
 
         }catch(\Exception $e){
-            return \abort(500);
+            return redirect()->route('error');
         }
 
 
@@ -208,7 +208,7 @@ class TripController extends Controller
             ]);
 
         }catch(\Exception $e){
-            return \abort(500);
+            return redirect()->route('error');
         }
 
 

@@ -50,6 +50,7 @@ function generateCode(){
                 $alfa = Str::random(4);
             }
         }
+        $alfa = strtoupper($alfa);
         $code = $alfa.$numeric;
         $request = Ticket::where('code', $code)->first();
 

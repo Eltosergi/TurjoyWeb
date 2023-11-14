@@ -26,33 +26,47 @@ const verifySeating = () => {
     const origin = selectOrigin.value;
     const destination = selectDestination.value;
     const date = selectDate.value;
-
-    if(origin && destination && date){
-        fetch(`/seating/${origin}/${destination}/${date}`)
-        .then(response => response.json())
-        .then(data => {
-            const seating = data.seats;
-            const trip = data.trip;
-            if(seating <= 0){
-                seatingErrorElement2.style.display = 'block';
-                selectOrigin.value = '';
-                selectDestination.value = '';
-                selectDate.value = '';
-            }else{
-            addSeatsToSelect(seating, trip);
-            }
+    if(isNaN(Date.parse(date))){
+        Swal.fire({
+            icon: 'error',
+            iconColor: '#fff',
+            title: 'Oops...',
+            text: 'La fecha seleccionada no es válida',
+            confirmButtonColor: '#2ECC71',
+            background: '#FF6B6B',
+            color: '#fff',
 
         })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-
     }else{
-        dateErrorElement2.style.display = 'block';
-        selectOrigin.value = '';
-        selectDestination.value = '';
-        console.log('no hay datos');
+        if(origin && destination && date){
+            fetch(`/seating/${origin}/${destination}/${date}`)
+            .then(response => response.json())
+            .then(data => {
+                const seating = data.seats;
+                const trip = data.trip;
+                if(seating <= 0){
+                    seatingErrorElement2.style.display = 'block';
+                    selectOrigin.value = '';
+                    selectDestination.value = '';
+                    selectDate.value = '';
+                }else{
+                addSeatsToSelect(seating, trip);
+                }
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+        }else{
+            dateErrorElement2.style.display = 'block';
+            selectOrigin.value = '';
+            selectDestination.value = '';
+            console.log('no hay datos');
+        }
+
     }
+
 
 
 }
@@ -245,7 +259,6 @@ const dateChange = (dateChanged) => {
     }
 }
 const emptySelects = ()=>{
-    console.log('entro')
     selectDestination.value = "";
     selectOrigin.value = "";
     seatingElement.value = "";
@@ -269,22 +282,29 @@ button.addEventListener('click', (e) => {
     const selectedseats = document.getElementById('seats').value;
     const basePrice = document.getElementById('basePrice');
     const total = document.getElementById('basePrice').value * selectedseats;
-    basePrice.value = total;
-    console.log(selectedDate+"despues")
+    document.getElementById('total').value = total;
+    const date = new Date(selectedDate);
+    const dateChanged = date.toLocaleDateString();
+
     e.preventDefault();
     if (dateChange(selectedDate) == false) {
         Swal.fire({
             icon: 'error',
+            iconColor: '#fff',
             title: 'Oops...',
             text: 'La fecha seleccionada no es válida',
             confirmButtonColor: '#2ECC71',
+            background: '#FF6B6B',
+            color: '#fff',
+
         })
     }
+
     if (selectedOrigin && selectedDestination && selectedDate  && selectedseats && basePrice) {
 
         Swal.fire({
             title: '¿Estas seguro de realizar la reserva?',
-            text: `El total de la reserva entre ${selectedOrigin} y ${selectedDestination} para el día ${selectedDate} es de $${total} (${selectedseats} asientos) . ¿Desea continuar?`,
+            text: `El total de la reserva entre ${selectedOrigin} y ${selectedDestination} para el día ${dateChanged} es de $${total.toLocaleString('es-ES')} (${selectedseats} asientos) . ¿Desea continuar?`,
             showCancelButton: true,
             confirmButtonColor: '#2ECC71',
             cancelButtonColor: '#FF6B6B',
@@ -293,6 +313,8 @@ button.addEventListener('click', (e) => {
         }).then((result) => {
             if (result.isConfirmed) {
                 form.submit();
+
+            }else{
 
             }
         });
