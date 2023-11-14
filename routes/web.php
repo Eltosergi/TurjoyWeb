@@ -80,3 +80,8 @@ Route::get('/travel-reservation/{id}', [VoucherController::class, 'generatePDF']
 Route::get('download-pdf/{id}', [VoucherController::class, 'downloadPDF'])->name('pdf.download');
 
 Route::post('search/result',[SearchController::class, 'search'])->name('search.result');
+
+
+Route::get('/unexpected', function () {
+    return view('unexpected');
+})->name('error');
