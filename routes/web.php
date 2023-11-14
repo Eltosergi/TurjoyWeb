@@ -69,7 +69,7 @@ Route::middleware(['guest'])->group(function () {
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/upload', [UserController::class, 'dashboardIndex'])->name('index');
+    Route::get('/index', [UserController::class, 'dashboardIndex'])->name('index');
     Route::get('/add/travel', [TripController::class, 'indexAddTravels'])->name('travels.index');
     Route::post('/addtravel', [TripController::class, 'travelCheck'])->name('travel.check');
     Route::get('/result/travels', [TripController::class, 'indexTravels'])->name('travelsAdd.index');
