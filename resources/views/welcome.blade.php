@@ -59,11 +59,15 @@ Página principal
     </button>
     <br/>
     @guest
-    <button type="button"  class="px-6 py-3.5 text-base font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center" style="margin-top: 5%; margin-left: 46%; background-color:#2ECC71;">
-
-        <a href="{{route('reserve')}}">Reserva ya!</a>
-
-    </button>
+    <div style="margin-top: 5%; text-align: center;">
+        <a href="{{ route('reserve') }}" class="block">
+            <button type="button" class="px-6 py-3.5 text-base font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg" style="background-color:#2ECC71; margin: auto;">
+                Reserva ya!
+            </button>
+        </a>
+    </div>
+    
+    
     @endguest
 
 
