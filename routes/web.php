@@ -63,7 +63,9 @@ Route::middleware(['guest'])->group(function () {
 
 
 // PREGUNTAR CLIENTE: ¿solo los invitados (usuarios) pueden acceder al reservar?
-
+Route::any('/search/result', function () {
+    return redirect()->route('welcome')->with('error', 'No se permite el acceso directo a esta página.');
+});
 
 
 

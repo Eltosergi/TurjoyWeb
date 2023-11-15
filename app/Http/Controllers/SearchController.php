@@ -45,6 +45,7 @@ class SearchController extends Controller
                 'voucher' => $voucher,
                 'trip' => $trip->first(),
             ]);
+          
         } catch (QueryException $e) {
             // Manejar la excepción de la base de datos aquí
             return redirect()->route('error');
