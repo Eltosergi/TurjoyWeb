@@ -62,14 +62,6 @@ Route::middleware(['guest'])->group(function () {
 
 
 
-// PREGUNTAR CLIENTE: ¿solo los invitados (usuarios) pueden acceder al reservar?
-Route::any('/search/result', function () {
-    return redirect()->route('welcome')->with('error', 'No se permite el acceso directo a esta página.');
-});
-
-
-
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/index', [UserController::class, 'dashboardIndex'])->name('index');
     Route::get('/add/travel', [TripController::class, 'indexAddTravels'])->name('travels.index');
@@ -78,10 +70,16 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
+Route::any('/travel-reservation/{id}', function () {
+    return redirect()->route('reserve');
+ });
 Route::get('/travel-reservation/{id}', [VoucherController::class, 'generatePDF'])->name('generate.pdf');
 Route::get('download-pdf/{id}', [VoucherController::class, 'downloadPDF'])->name('pdf.download');
 
 Route::post('search/result',[SearchController::class, 'search'])->name('search.result');
+Route::any('/search/result', function () {
+   return redirect()->route('search');
+});
 
 
 Route::get('/unexpected', function () {

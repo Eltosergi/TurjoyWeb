@@ -17,10 +17,10 @@ class SearchController extends Controller
 
     public function search(Request $request)
     {
-        try {
-            $message = makeMessages();
-            $this->validate($request, ['code' => ['required']], $message);
+        $message = makeMessages();
+        $this->validate($request, ['code' => ['required']], $message);
 
+        try {
             $code = $request->code;
             $ticket = Ticket::where('code', $code);
 
