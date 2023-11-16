@@ -174,6 +174,7 @@
                             }
                         }
                     </script>
+                    <div>
                     @error('document')
                         <p class="bg-red-custom font-semibold my-4 text-lg text-center text-red-800 px-4 py-3 rounded-lg">
                             {{ $message }}</p>
@@ -183,8 +184,8 @@
                             {{ Session::get('error') }}
                         </div>
                     @endif
+                    </div>
                 </div>
-
                 <button class="lg:w-1/4 my-4 p-2 hover:bg-blue-700 bg-green-custom rounded-lg text-white font-semibold" type="submit">
                     Importar viajes
                 </button>

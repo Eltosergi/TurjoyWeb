@@ -28,8 +28,10 @@ class TripImport implements ToCollection, WithHeadingRow
     {        
         foreach ($rows as $row) {
             try{
-                $origin = $row[self::ORIGIN_COLUMN];
+            $origin = $row[self::ORIGIN_COLUMN];
             $destination = $row[self::DESTINATION_COLUMN];
+            $baseRate = $row[self::BASE_RATE_COLUMN];
+            $seats = $row[self::SEATS_COLUMN];
             }
            catch(\Exception $e)
            {

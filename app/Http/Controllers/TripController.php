@@ -60,14 +60,15 @@ class TripController extends Controller
         //Validar el archivo excel en detalle
         if ($request->hasFile('document')) {
             $file = request()->file('document');
-
             $import = new TripImport();
-            Excel::import($import, $file);
-            if(!$import->getValidRows() && !$import->getInvalidRows() && !$import->getDuplicatedRows()){
+
+            Excel::import($import, $file);            
+            if((!$import->getValidRows() && !$import->getInvalidRows() && !$import->getDuplicatedRows())){
                 // Agregar mensaje de error a la sesión
                 Session::flash('error', 'Hubo un problema con la importación. Por favor, verifica el archivo.');
                 return redirect()->route('index');
             }
+
             // Obtener filas válidas e inválidas
             $validRows = $import->getValidRows();
             $invalidRows = $import->getInvalidRows();

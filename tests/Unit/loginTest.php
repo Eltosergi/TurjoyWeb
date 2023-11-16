@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
@@ -10,7 +11,7 @@ use App\Models\User;
 
 class LoginTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase, WithFaker, WithoutMiddleware;
 
     /**
      * Test a successful login.
@@ -19,7 +20,7 @@ class LoginTest extends TestCase
      */
     public function testSuccessfulLogin()
     {
-        $password = $this->faker->password;
+        $password = $this->faker->password; 
         $user = User::create([
             'name' => 'Italo Donoso',
             'email' => 'italo.donoso@ucn.cl',
