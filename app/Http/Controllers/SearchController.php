@@ -17,9 +17,9 @@ class SearchController extends Controller
 
     public function search(Request $request)
     {
+        $message = makeMessages();
+        $this->validate($request, ['code' => ['required']], $message);
         try {
-            $message = makeMessages();
-            $this->validate($request, ['code' => ['required']], $message);
 
             $code = $request->code;
             $ticket = Ticket::where('code', $code);
@@ -45,12 +45,13 @@ class SearchController extends Controller
                 'voucher' => $voucher,
                 'trip' => $trip->first(),
             ]);
-          
+
         } catch (QueryException $e) {
             // Manejar la excepción de la base de datos aquí
             return redirect()->route('error');
         } catch (\Exception $e) {
             // Manejar otras excepciones aquí
+
             return redirect()->route('error');
         }
     }
