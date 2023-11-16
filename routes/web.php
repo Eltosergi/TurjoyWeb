@@ -75,6 +75,9 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
+Route::any('/travel-reservation/{id}', function () {
+    return redirect()->route('reserve');
+ });
 Route::get('/travel-reservation/{id}', [VoucherController::class, 'generatePDF'])->name('generate.pdf');
 Route::get('download-pdf/{id}', [VoucherController::class, 'downloadPDF'])->name('pdf.download');
 

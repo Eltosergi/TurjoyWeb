@@ -19,8 +19,8 @@ class SearchController extends Controller
     {
         $message = makeMessages();
         $this->validate($request, ['code' => ['required']], $message);
-        try {
 
+        try {
             $code = $request->code;
             $ticket = Ticket::where('code', $code);
 
