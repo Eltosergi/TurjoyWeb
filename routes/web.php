@@ -72,6 +72,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/add/travel', [TripController::class, 'indexAddTravels'])->name('travels.index');
     Route::post('/addtravel', [TripController::class, 'travelCheck'])->name('travel.check');
     Route::get('/result/travels', [TripController::class, 'indexTravels'])->name('travelsAdd.index');
+    Route::get('/report', function () { return view('admin.auth.report'); })->name('report');
 });
 
 
