@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\auth\LoginController;
+use App\Http\Controllers\auth\ReportController;
 use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\UserController;
@@ -72,7 +73,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/add/travel', [TripController::class, 'indexAddTravels'])->name('travels.index');
     Route::post('/addtravel', [TripController::class, 'travelCheck'])->name('travel.check');
     Route::get('/result/travels', [TripController::class, 'indexTravels'])->name('travelsAdd.index');
-    Route::get('/report', function () { return view('admin.auth.report'); })->name('report');
+    Route::get('/preReport', function () { return redirect() -> route('report'); })->name('preReport');
+    Route::get('/report', [ReportController::class, 'index'])->name('report');
+    
 });
 
 
