@@ -13,16 +13,20 @@ use App\Http\Controllers\VoucherController;
 class TicketController extends Controller
 {
     public function store(Request $request){
-        try{
+        try{ 
 
             $code = generateCode();
             // Modificar request
             $request->request->add(['code' => $code]);
 
-            // Validar
-
             // Obtener viaje
-            $tripId = Trip::where('origin', $request->origin)->where('destination', $request->destination)->pluck('id')->first();
+            $trip = Trip::where('origin', $request->origin)->where('destination', $request->destination)->first();
+            
+            if ( $trip -> qtySeats < $request->seat) {
+                return redirect()->route('reserve')->with('error', 'Cantidad inválida. Ingrese un valor aceptado');
+            }
+
+            $tripId = $trip->id;
 
             // Crear la reserva
             $ticket = Ticket::create([
