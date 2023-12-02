@@ -31,7 +31,11 @@ class TicketController extends Controller
             // Modificar request
             $request->request->add(['code' => $code]);
 
-            // Validar
+
+
+            if($request->origin == $request->destination){
+                return redirect()->route('error');
+            }
 
 
 
@@ -40,7 +44,13 @@ class TicketController extends Controller
             }
 
             // Obtener viaje
-            $tripId = Trip::where('origin', $request->origin)->where('destination', $request->destination)->pluck('id')->first();
+            $trip = Trip::where('origin', $request->origin)->where('destination', $request->destination)->first();
+
+            if ( $trip -> qtySeats < $request->seat) {
+                return redirect()->route('reserve')->with('error', 'Cantidad inválida. Ingrese un valor aceptado');
+            }
+
+            $tripId = $trip->id;
 
             // Crear la reserva
             $ticket = Ticket::create([
