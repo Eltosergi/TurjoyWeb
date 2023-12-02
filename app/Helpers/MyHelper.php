@@ -4,6 +4,7 @@
 use Carbon\Carbon;
 use App\Models\Ticket;
 use Illuminate\Support\Str;
+use App\Http\Controllers\VoucherController;
 
 
 function makeMessages()
@@ -15,11 +16,26 @@ function makeMessages()
         'document.mimes' => 'el archivo seleccionado no es Excel con extensión .xlsx.',
 
         'document.max' => 'el tamaño máximo del archivo a cargar no puede superar los 5 megabytes',
+
+
+
         'date.required' => 'el campo fecha es requerido.',
         'origins.required' => 'el campo origen es requerido.',
         'destinations.required' => 'el campo destino es requerido.',
         'seats.required' => 'el campo asientos es requerido.',
-        'code.required'=> 'debe proporcionar un código de reserva'
+        'code.required'=> 'debe proporcionar un código de reserva',
+        'seat.numeric' => 'el campo asientos debe ser numérico',
+        'seat.min' => 'el campo asientos debe ser mayor a 0',
+        'seat.max' => 'el campo asientos debe ser menor a la cantidad de asientos disponibles',
+        'date.date' => 'el campo fecha debe ser una fecha válida',
+        'origin.string' => 'el campo origen debe ser válido',
+
+        'destination.string' => 'el campo destino debe ser válido',
+        'origin.exists' => 'el campo origen debe ser válido',
+        'destination.exists' => 'el campo destino debe ser válido',
+
+
+
 
     ];
 

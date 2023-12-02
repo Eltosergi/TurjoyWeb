@@ -13,6 +13,18 @@ use App\Http\Controllers\VoucherController;
 class TicketController extends Controller
 {
     public function store(Request $request){
+        $messages = makeMessages();
+        $tripSeats = Trip::where('origin', $request->origin)->where('destination', $request->destination)->pluck('qtySeats')->first();
+        $tripSeats = (int)$tripSeats;
+        $this->validate($request, [
+            'seat' => ['required', 'numeric', 'min:1','max:'.$tripSeats],
+            'date' => ['required', 'date'],
+            'origin' => ['required', 'string','exists:trips,origin'],
+            'destination' => ['required', 'string','exists:trips,destination'],
+        ], $messages);
+
+
+
         try{
 
             $code = generateCode();
@@ -20,6 +32,12 @@ class TicketController extends Controller
             $request->request->add(['code' => $code]);
 
             // Validar
+
+
+
+            if($request->origin == $request->destination){
+                return redirect()->route('error');
+            }
 
             // Obtener viaje
             $tripId = Trip::where('origin', $request->origin)->where('destination', $request->destination)->pluck('id')->first();
@@ -42,6 +60,8 @@ class TicketController extends Controller
         }catch(\Exception $e){
 
             return redirect()->route('error');
+
+
         }
 
     }

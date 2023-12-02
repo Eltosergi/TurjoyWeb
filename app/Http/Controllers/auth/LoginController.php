@@ -12,12 +12,15 @@ class LoginController extends Controller
 
     public function store(Request $request)
     {
-        try{
+
             $messages = makeMessages();
         $this->validate($request, [
             'email'=> ['required'],
             'password' => ['required']
         ], $messages);
+
+        try{
+
 
 
         if(!auth()->attempt([
@@ -34,4 +37,5 @@ class LoginController extends Controller
         }
 
     }
+
 }

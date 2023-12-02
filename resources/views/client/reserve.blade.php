@@ -23,46 +23,75 @@
           </h1>
 
       </div>
-
-                    <form id="form" class="space-y-4 md:space-y-6" action="{{ route('ticket.store') }}" method="POST" >
-                        @csrf
-                        <div>
-                            <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha del viaje:</label>
-                            <input type="date" id="date" name="date" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="">
-                            <p id="dateErrorSelect" class="bg-red-custom text-white my-2 rounded-lg text-lg text-center" style="display:none">debe seleccionar la
-                                fecha del viaje antes de realizar la reserva</p>
-
-                            <p id="dateError" class="bg-red-custom text-white my-2 rounded-lg text-lg text-center -p-2" style="display:none">La fecha seleccionada
-                                no puede ser menor a la actual</p>
-                        </div>
-                        <div>
-                            <label for="origen" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Origen:</label>
-                            <select id="origins" name="origin" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
-                          <option value="" disabled selected>Seleccione un origen</option>
-
-                            </select>
-                            <p id="originError" class="bg-red-custom text-white my-2 rounded-lg text-lg text-center" style="display:none">debe seleccionar
-                                el origen antes de realizar la reserva</p>
-
-                      </div>
-                        <div>
-                            <label for="destino" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Destino:</label>
-                            <select id="destinations" name="destination" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
-                                <option value="" disabled selected>Seleccione un destino</option>
+                        @if (session('messages'))
+                            <p id="dateErrorSelect" class="bg-red-custom text-white my-2 rounded-lg text-lg text-center">
+                                {{session('messages')}}</p>
+                        @endif
 
 
-                            </select>
-                            <p id="destinationError" class="bg-red-custom text-white my-2 rounded-lg text-lg text-center -p-2"style="display:none">debe seleccionar
-                                el destino antes de realizar la reserva</p>
-                      </div>
-                        <div>
-                            <label for="asientos" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cantidad de asientos:</label>
-                            <select id="seats" name="seat" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required="">
-                                <option value="" disabled selected>Seleccione cantidad de asientos</option>
-                            </select>
-                            <p id="seatsError" class="bg-red-custom text-white my-2 rounded-lg text-lg text-center -p-2" style="display:none ">debe seleccionar la cantidad de asientos antes de realizar la reserva</p>
-                            <p id="noSeatsError" class="bg-red-custom text-white my-2 rounded-lg text-lg text-center -p-2" style="display:none ">no hay servicios disponibles para la ruta seleccionada</p>
-                        </div>
+                <form id="form" class="space-y-4 md:space-y-6" action="{{ route('ticket.store') }}" method="POST" novalidate>
+                    @csrf
+                    <div>
+                        <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha del viaje:</label>
+                        <input type="date" id="date" name="date" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+
+
+                        @error('date')
+                            <p id="dateErrorSelect" class="bg-red-custom text-white my-2 rounded-lg text-lg text-center" >
+                                {{$message}}</p>
+
+                        @enderror
+
+
+
+                        <p id="dateErrorSelect" class="bg-red-custom text-white my-2 rounded-lg text-lg text-center" style="display:none">debe seleccionar la
+                            fecha del viaje antes de realizar la reserva</p>
+
+                        <p id="dateError" class="bg-red-custom text-white my-2 rounded-lg text-lg text-center -p-2" style="display:none">La fecha seleccionada
+                            no puede ser menor a la actual</p>
+                    </div>
+                    <div>
+                        <label for="origen" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Origen:</label>
+                        <select id="origins" name="origin" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                        <option value="" disabled selected>Seleccione un origen</option>
+
+                        </select>
+                        @error('origin')
+                            <p id="dateErrorSelect" class="bg-red-custom text-white my-2 rounded-lg text-lg text-center">
+                                {{$message}}</p>
+
+                        @enderror
+                        <p id="originError" class="bg-red-custom text-white my-2 rounded-lg text-lg text-center" style="display:none">debe seleccionar
+                            el origen antes de realizar la reserva</p>
+
+                    </div>
+                    <div>
+                        <label for="destino" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Destino:</label>
+                        <select id="destinations" name="destination" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                            <option value="" disabled selected>Seleccione un destino</option>
+
+
+                        </select>
+                        @error('destination')
+                            <p id="dateErrorSelect" class="bg-red-custom text-white my-2 rounded-lg text-lg text-center" >
+                                {{$message}}</p>
+                        @enderror
+                        <p id="destinationError" class="bg-red-custom text-white my-2 rounded-lg text-lg text-center -p-2"style="display:none">debe seleccionar
+                            el destino antes de realizar la reserva</p>
+                    </div>
+                    <div>
+                        <label for="asientos" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cantidad de asientos:</label>
+                        <select id="seats" name="seat" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required="">
+                            <option value="" disabled selected>Seleccione cantidad de asientos</option>
+                        </select>
+                        @error('seat')
+                            <p id="dateErrorSelect" class="bg-red-custom text-white my-2 rounded-lg text-lg text-center" >
+                                {{$message}}</p>
+
+                        @enderror
+                        <p id="seatsError" class="bg-red-custom text-white my-2 rounded-lg text-lg text-center -p-2" style="display:none ">debe seleccionar la cantidad de asientos antes de realizar la reserva</p>
+                        <p id="noSeatsError" class="bg-red-custom text-white my-2 rounded-lg text-lg text-center -p-2" style="display:none ">no hay servicios disponibles para la ruta seleccionada</p>
+                    </div>
 
                         <input type="number" id="total" name="total" value=" " hidden>
                         <div class="center">
