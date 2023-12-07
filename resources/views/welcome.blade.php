@@ -59,16 +59,26 @@ Página principal
     </button>
     <br/>
     @guest
-    <div style="margin-top: 5%; text-align: center;">
-        <a href="{{ route('reserve') }}" class="block">
-            <button type="button" class="px-6 py-3.5 text-base font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg" style="background-color:#2ECC71; margin: auto;">
-                Reserva ya!
-            </button>
-        </a>
-    </div>
-    
-    
+    <div class="text-center">
+        <button data-tooltip-target="tooltip-light" data-tooltip-placement="bottom" style="background-color: #0A74DA" class="text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" type="button" data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" aria-controls="drawer-navigation">
+            Reservar
+        </button>
+        <div id="tooltip-light" role="tooltip"  class="absolute z-30 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
+            Reserva y busca reservas en unos clicks!
+            <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
+     </div>
+
+
     @endguest
+    @auth
+    <div class="text-center">
+        <button style="background-color: #0A74DA" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" type="button" data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" aria-controls="drawer-navigation">
+        Opciones administrativas
+        </button>
+     </div>
+
+    @endauth
 
 
 

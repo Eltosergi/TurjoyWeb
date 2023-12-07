@@ -33,8 +33,11 @@
                     @csrf
                     <div>
                         <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha del viaje:</label>
-                        <input type="date" id="date" name="date" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
-
+                        <input data-tooltip-target="tooltip-light" data-tooltip-placement="right" type="date" id="date" name="date" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                        <div style="background-color: #EAEAEA " id="tooltip-light" role="tooltip"  class="absolute z-30 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
+                            Selecciona la fecha del viaje, procura que esta se válida
+                            <div class="tooltip-arrow" data-popper-arrow></div>
+                        </div>
 
                         @error('date')
                             <p id="dateErrorSelect" class="bg-red-custom text-white my-2 rounded-lg text-lg text-center" >
@@ -52,10 +55,15 @@
                     </div>
                     <div>
                         <label for="origen" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Origen:</label>
-                        <select id="origins" name="origin" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                        <select data-tooltip-target="tooltip-origin" data-tooltip-placement="right" id="origins" name="origin" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
                         <option value="" disabled selected>Seleccione un origen</option>
 
+
                         </select>
+                        <div style="background-color: #EAEAEA " id="tooltip-origin" role="tooltip"  class="absolute z-30 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
+                            Selecciona desde donde desea viajar
+                            <div class="tooltip-arrow" data-popper-arrow></div>
+                        </div>
                         @error('origin')
                             <p id="dateErrorSelect" class="bg-red-custom text-white my-2 rounded-lg text-lg text-center">
                                 {{$message}}</p>
@@ -67,11 +75,15 @@
                     </div>
                     <div>
                         <label for="destino" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Destino:</label>
-                        <select id="destinations" name="destination" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                        <select data-tooltip-target="tooltip-destiny" data-tooltip-placement="right" id="destinations" name="destination" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
                             <option value="" disabled selected>Seleccione un destino</option>
 
 
                         </select>
+                        <div style="background-color: #EAEAEA " id="tooltip-destiny" role="tooltip"  class="absolute z-30 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
+                            Selecciona hacia donde desea viajar
+                            <div class="tooltip-arrow" data-popper-arrow></div>
+                        </div>
                         @error('destination')
                             <p id="dateErrorSelect" class="bg-red-custom text-white my-2 rounded-lg text-lg text-center" >
                                 {{$message}}</p>
@@ -81,9 +93,13 @@
                     </div>
                     <div>
                         <label for="asientos" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cantidad de asientos:</label>
-                        <select id="seats" name="seat" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required="">
+                        <select data-tooltip-target="tooltip-seats" data-tooltip-placement="right" id="seats" name="seat" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required="">
                             <option value="" disabled selected>Seleccione cantidad de asientos</option>
                         </select>
+                        <div style="background-color: #EAEAEA " id="tooltip-seats" role="tooltip"  class="absolute z-30 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
+                            Selecciona la cantidad de asientos que desea reservar
+                            <div class="tooltip-arrow" data-popper-arrow></div>
+                        </div>
                         @error('seat')
                             <p id="dateErrorSelect" class="bg-red-custom text-white my-2 rounded-lg text-lg text-center" >
                                 {{$message}}</p>
@@ -98,11 +114,15 @@
                         @if (session('error'))
                         <p class = "text-white my-2 rounded-lg text-lg text-center p-2" style="background-color: #ff8a80">{{ session('error') }} </p>
                         @endif
-                        
+
                         <div class="center">
-                            <button id="acceptButton" type="button" class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800" >Reservar</button>
+                            <button data-tooltip-target="tooltip-reserve" data-tooltip-placement="bottom" id="acceptButton" type="button" class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800" >Reservar</button>
+                            <div style="background-color: #EAEAEA " id="tooltip-reserve" role="tooltip"  class="absolute z-30 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
+                                Reserva tu pasaje!
+                                <div class="tooltip-arrow" data-popper-arrow></div>
+                            </div>
                         </div>
-                        
+
 
                     </form>
                     <input type="number" id="basePrice" value=" " hidden>

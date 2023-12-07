@@ -23,7 +23,11 @@ Buscar reserva
                     @csrf
                     <div>
                         <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ingrese su reserva</label>
-                        <input type = 'text' name="code" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Código">
+                        <input data-tooltip-target="tooltip-light" data-tooltip-placement="right" type = 'text' name="code" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Código">
+                        <div style="background-color: #EAEAEA " id="tooltip-light" role="tooltip"  class="absolute z-30 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
+                            Ingrese su código de reserva
+                            <div class="tooltip-arrow" data-popper-arrow></div>
+                        </div>
                         @error('code')
                             <p class = "text-white my-2 rounded-lg text-lg text-center p-2" style="background-color: #ff8a80">{{ $message }} </p>
                         @enderror

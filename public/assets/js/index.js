@@ -31,7 +31,7 @@ const verifySeating = () => {
             icon: 'error',
             iconColor: '#fff',
             title: 'Oops...',
-            text: 'La fecha seleccionada no es válida',
+            text: 'Seleccione una fecha!',
             confirmButtonColor: '#2ECC71',
             background: '#FF6B6B',
             color: '#fff',
@@ -275,6 +275,7 @@ fixDate = (date) => {
     return date
 }
 
+
 document.addEventListener('DOMContentLoaded', loadedOrigins );
 selectDate.addEventListener('change', verifyDate);
 selectDate.addEventListener('change', emptySelects);
@@ -301,12 +302,13 @@ button.addEventListener('click', (e) => {
             icon: 'error',
             iconColor: '#fff',
             title: 'Oops...',
-            text: 'La fecha seleccionada no es válida',
+            text: 'Seleccione una fecha válida!',
             confirmButtonColor: '#2ECC71',
             background: '#FF6B6B',
             color: '#fff',
 
         })
+
     }
 
     if (selectedOrigin && selectedDestination && selectedDate  && selectedseats && basePrice) {
