@@ -44,15 +44,17 @@ class VoucherController extends Controller
         try{
             $ticket = Ticket::findOrFail($idTicket);
 
-            // Crear una instacia de Dompdf
             $domPDF = new Dompdf();
             $trip = Trip::findOrFail($ticket->tripId);
-
+            $tripDate = $ticket->date;
+            $components = explode('-', $tripDate);
+            $tripDate = $components[2].'-'.$components[1].'-'.$components[0];
 
             $view_html = view('client.voucher', [
                 'ticket' => $ticket,
                 'date' => date('d-m-Y'),
                 'trip' => $trip,
+                'tripDate' => $tripDate,
             ])->render();
 
             $domPDF->loadHtml($view_html);
@@ -61,17 +63,15 @@ class VoucherController extends Controller
 
             $domPDF->render();
 
-            // Generar nombre de archivo aleatorio
             $fileName = 'user_'.Str::random(10).'.pdf';
 
-            // Guardar el PDF en la carpeta public
             $path = 'pdfs\\'.$fileName;
             Storage::disk('public')->put($path, $domPDF->output());
 
             $voucher = Voucher::create([
                 'uri' => $path,
                 'date' => date('Y-m-d'),
-                'ticketId' => $idTicket
+                'ticketId' => $idTicket,
             ]);
 
 

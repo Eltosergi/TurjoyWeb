@@ -266,6 +266,15 @@ const emptySelects = ()=>{
 
 }
 
+fixDate = (date) => {
+    var date = new Date(date);
+    var day = date.getDate() + 1;
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+    var date = `${day}-${month}-${year}`;
+    return date
+}
+
 document.addEventListener('DOMContentLoaded', loadedOrigins );
 selectDate.addEventListener('change', verifyDate);
 selectDate.addEventListener('change', emptySelects);
@@ -283,8 +292,8 @@ button.addEventListener('click', (e) => {
     const basePrice = document.getElementById('basePrice');
     const total = document.getElementById('basePrice').value * selectedseats;
     document.getElementById('total').value = total;
-    const date = new Date(selectedDate);
-    const dateChanged = date.toLocaleDateString();
+
+    const dateChanged = fixDate(selectedDate);
 
     e.preventDefault();
     if (dateChange(selectedDate) == false) {

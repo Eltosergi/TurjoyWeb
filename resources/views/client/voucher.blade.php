@@ -17,7 +17,7 @@
         }
 
         h2 {
-            color: #a00318;
+            color: #A0A74DA;
         }
 
         h3 {
@@ -75,7 +75,7 @@
             <span>{{ $trip->destination }}</span>
         </p>
         <p>Dia de la reserva:
-            <span>{{ $ticket->date }}</span>
+            <span>{{ $tripDate }}</span>
         </p>
         <p>Cantidad de asientos:
             <span>{{ $ticket->seat}}</span>
@@ -86,7 +86,7 @@
     </div>
     <hr>
     <div class="total">
-        <p class="total-pay">Total pagado: {{ $ticket->total }}</p>
+        <p class="total-pay">Total pagado: ${{ $ticket->total }}</p>
     </div>
 </body>
 

@@ -15,7 +15,6 @@ class TicketController extends Controller
     public function store(Request $request){
         $messages = makeMessages();
         $tripSeats = Trip::where('origin', $request->origin)->where('destination', $request->destination)->pluck('qtySeats')->first();
-        $tripSeats = (int)$tripSeats;
         $this->validate($request, [
             'seat' => ['required', 'numeric', 'min:1','max:'.$tripSeats],
             'date' => ['required', 'date'],
