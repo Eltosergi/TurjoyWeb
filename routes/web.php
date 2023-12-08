@@ -74,8 +74,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/addtravel', [TripController::class, 'travelCheck'])->name('travel.check');
     Route::get('/result/travels', [TripController::class, 'indexTravels'])->name('travelsAdd.index');
     Route::get('/preReport', function () { return redirect() -> route('report'); })->name('preReport');
-    Route::get('/report', [ReportController::class, 'index'])->name('report');
-    
+    Route::get('/report', [ReportController::class, 'ticketReportIndex'])->name('report');
+    Route::get('/report/result', [ReportController::class, 'searchToDate'])->name('searchToDate');
 });
 
 

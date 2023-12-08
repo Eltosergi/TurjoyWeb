@@ -34,7 +34,11 @@ function makeMessages()
         'origin.exists' => 'el campo origen debe ser válido',
         'destination.exists' => 'el campo destino debe ser válido',
 
-
+        'start.required' => 'el campo fecha de inicio es requerido',
+        'start.date' => 'el campo fecha de inicio debe ser una fecha válida',
+        'end.required' => 'el campo fecha de término es requerido',
+        'end.date' => 'el campo fecha de término debe ser una fecha válida',
+        'end' => 'la fecha de inicio a consultar no puede ser mayor que la fecha de término de la consulta',
 
 
     ];

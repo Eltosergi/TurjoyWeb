@@ -19,8 +19,8 @@ class Ticket extends Model
 
     ];
 
-    public function travelDates()
+    public function trip()
     {
-        return $this->belongsTo(Trip::class, 'travelId');
+        return $this->belongsTo(Trip::class, 'tripId');
     }
 }
