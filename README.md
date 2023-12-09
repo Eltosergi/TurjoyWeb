@@ -1,66 +1,89 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<# Sistema Turjoy
+Turjoy es una empresa especializada en la venta de pasajes de autobús, y para facilitar este proceso, se ha desarrollado un sistema eficiente.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+TurjoyWeb es una plataforma que simplifica la reserva de pasajes de autobús, permitiendo a nuestros clientes reservar y buscar viajes de manera eficiente mediante un código proporcionado.
 
-## About Laravel
+El sistema incluye un sofisticado panel administrativo diseñado para brindar a Turjoy un control total sobre los viajes disponibles y ofrecer la capacidad de generar un reporte detallado sobre las reservas realizadas.
+ 
+Este panel administrativo proporciona a la empresa una herramienta integral para gestionar y optimizar la disponibilidad de viajes, así como para obtener una visión clara y actualizada de todas las reservas efectuadas. Con funcionalidades intuitivas y una interfaz fácil de usar, el sistema facilita la administración diaria de las operaciones de Turjoy, permitiendo un flujo de trabajo eficiente y una atención al cliente de alta calidad.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Panel Administrativo
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Puedes acceder al panel administrativo utilizando las siguientes credenciales predeterminadas:
+- Usuario: italo@ucn.cl
+- Contraseña: Turjoy91
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Tecnologías Utilizadas
+================================================================================================================
+Hemos seleccionado cuidadosamente las siguientes tecnologías para garantizar un desarrollo eficiente y escalable:
 
-## Learning Laravel
+Base de Datos:
+- MySQL Workbench
+  
+Backend y Frontend:
+- Laravel 10
+  
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Descarga del proyecto
+================================================================================================================
+## Programas a instalar
+Antes de comenzar, asegúrate de tener instalados los siguientes programas:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Instala [GIT](https://git-scm.com/downloads)
 
-## Laravel Sponsors
+Instala [XAMPP](https://www.apachefriends.org/es/index.html) con PHP V8.1.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Instala [Composer](https://getcomposer.org/download/) V2.6.5.
 
-### Premium Partners
+Instala [Nodejs](https://nodejs.org/en) V18.17.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Luego de instalado los programas, deber abrir XAMPP Control Panel, ahí debes presionar el boton "config" de Apache y luego seleciona la opcion "PHP (php.ini)", esta abrira un .txt en el cual buscaras "extension=zip", a este le borras el ";" que se encuentra delante.
 
-## Contributing
+Todo esto es para habilitar la instalacion del composer desde la misma maquina, evitando que tenga que descargarlo directamente de internet.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Luego guardas el .txt y continuas con los siguientes pasos.
 
-## Code of Conduct
+- Clona este repositorio en tu máquina local: 
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+		git clone https://github.com/Eltosergi/TurjoyWeb
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Instalación de dependencias
 
-## License
+Ejecuta estos comandos en una terminal en el siguiente orden para instalar las dependencias y configurar el proyecto:
+```bash
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+cd TurjoyWeb
+
+composer install
+
+npm install
+
+copy .env.example .env
+
+php artisan key:generate
+
+composer dump-autoload
+
+```
+Después de copiar el archivo .env.example a .env, configura las siguientes variables:
+- DB_PORT: Puerto de la base de datos (por defecto 3306).
+- DB_DATABASE: Nombre de la base de datos.
+- DB_PASSWORD: Contraseña del proveedor de la base.
+
+Antes de ejecutar las migraciones, asegúrate de tener un entorno de base de datos MySQL activo.
+
+Luego continua con estas instrucciones:
+```bash
+
+php artisan migrate
+
+php artisan db:seed
+
+php artisan serve
+```
+Al utilizar el comando php artisan serve, debe de aceptar el crear una nueva base de datos con el nombre ingresado en las preferencias del .ENV, teclear "y" y presionar enter.
+La url del backend deberia de desplegarse en la terminal.
+
+espués de ejecutar `php artisan serve`, puedes acceder a la aplicación web desde la URL generada en la terminal.
