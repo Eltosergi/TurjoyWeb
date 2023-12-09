@@ -10,7 +10,7 @@ Este panel administrativo proporciona a la empresa una herramienta integral para
 ## Panel Administrativo
 
 Puedes acceder al panel administrativo utilizando las siguientes credenciales predeterminadas:
-- Usuario: italo@ucn.cl
+- Usuario: italo.donoso@ucn.cl
 - Contraseña: Turjoy91
 
 Tecnologías Utilizadas
