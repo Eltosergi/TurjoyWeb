@@ -1,4 +1,4 @@
-<# Sistema Turjoy
+# Sistema Turjoy
 Turjoy es una empresa especializada en la venta de pasajes de autobús, y para facilitar este proceso, se ha desarrollado un sistema eficiente.
 
 TurjoyWeb es una plataforma que simplifica la reserva de pasajes de autobús, permitiendo a nuestros clientes reservar y buscar viajes de manera eficiente mediante un código proporcionado.
