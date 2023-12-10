@@ -23,12 +23,12 @@ use App\Http\Controllers\SearchController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+    return redirect()->route('reserve');
+});
 
 Route::get('/home', function () {
     return view('welcome');
-});
+})->name('welcome');;
 
 Route::get('search', function(){
     return view('search');
@@ -53,7 +53,6 @@ Route::post('/check',[TripController::class, 'checkTravel']);
 
 
 
-// ERROR: GET method not supported for this route. Supported methods: POST.
 
 Route::middleware(['guest'])->group(function () {
     Route::get('reserve', [TripController::class, 'reserveIndex'])->name('reserve');
