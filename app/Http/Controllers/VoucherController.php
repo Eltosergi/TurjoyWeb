@@ -23,13 +23,13 @@ class VoucherController extends Controller
             $path = storage_path('app\public\\'.$pdf->uri);
 
             // Obtener el nombre original del archivo
-            $filename = $pdf->pdf_name;
+            $newFilename = 'Reserva TURJOY.pdf';
 
             // Obtener el tipo MIME del archivo PDF
             $mimeType = Storage::mimeType($path);
 
             // Devolver el archivo PDF como una descarga
-            return response()->download($path, $filename, ['Content-Type' => $mimeType]);
+            return response()->download($path, $newFilename, ['Content-Type' => $mimeType]);
 
         }catch(\Exception $e){
             return redirect()->route('error');
