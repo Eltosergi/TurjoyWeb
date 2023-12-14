@@ -37,10 +37,13 @@ Buscar reserva
                     </div>
 
                     <button type="submit" class="w-full text-white bg-gradient-to-br to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2" style="background-color:#2ECC71 ">Buscar</button>
-
+                    @guest
                     <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                         ¿No ha reservado? <a href="{{route('reserve')}}" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Reserve</a>
                     </p>
+
+                    @endguest
+
 
                 </form>
             </div>

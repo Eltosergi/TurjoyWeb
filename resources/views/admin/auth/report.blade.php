@@ -6,7 +6,7 @@ Reporte de reservas
 @section('content')
 
     @if ($tickets ->count() > 0)
-        <div style="margin-top: 5%; text-align: center;">
+        <div style="margin-top: 6%; text-align: center;">
             <div style="display: inline-block;">
                 <a href="{{ route('report') }}"
                     class="bg-blue-custom-50 hover:bg-red-custom transition-all flex items-center justify-center my-auto w-9 h-10 text-white rounded-lg -ml-12 -mb-10"
@@ -18,11 +18,11 @@ Reporte de reservas
                     </svg>
                     <div style="background-color: #EAEAEA " id="tooltip-light" role="tooltip"  class="absolute z-30 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
                             Refresca el buscador
-                            <div class="tooltip-arrow" data-popper-arrow></div> 
-                    </div>               
+                            <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
                 </a>
-                
-                    
+
+
             <form action="{{ route('searchToDate') }}" method="GET">
                     @csrf
                     <div date-rangepicker class="flex items-center justify-center">
@@ -32,7 +32,7 @@ Reporte de reservas
                                     <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                 </svg>
                             </div>
-                            <input name="start" type="text" value="{{ old('start') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date start">
+                            <input name="start" type="text" value="{{ old('start') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Fecha de inicio">
                         </div>
                         <span class="mx-4 text-gray-500">to</span>
                         <div class="relative">
@@ -41,7 +41,7 @@ Reporte de reservas
                                     <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                 </svg>
                             </div>
-                            <input name="end" type="text" value="{{ old('end') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date end">
+                            <input name="end" type="text" value="{{ old('end') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Fecha de término">
                         </div>
 
                         <button type="submit"
@@ -65,7 +65,7 @@ Reporte de reservas
                 <p class="bg-red-custom text-white my-2 rounded-xl text-sm text-center p-2">{{ $message }}</p>
             @enderror
         </div>
-  
+
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg"style="margin-top: 1%">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -96,7 +96,7 @@ Reporte de reservas
                 <tbody>
                     @foreach ($tickets as $ticketRow)
                     <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                        
+
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{ $ticketRow->id }}
                             </th>
@@ -118,15 +118,15 @@ Reporte de reservas
                             <td class="px-6 py-4">
                                 {{ $ticketRow->total }}
                             </td>
-                            
-                        
-                        
+
+
+
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-        
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/datepicker.min.js"></script>
 
     </div>
@@ -142,7 +142,7 @@ Reporte de reservas
         </div>
     @endif
 
-    
+
 
 
 
